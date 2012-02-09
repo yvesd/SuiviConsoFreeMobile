@@ -36,7 +36,7 @@ public class DataInterpreter {
 		}
 
 		list.add(" ");
-		
+
 		list.add(inner02.select("p.date").text());
 
 		Element table = inner02.select("table").first();
