@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/loginAboLabel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Identifiant (login) :" />
+
+    <EditText
+        android:id="@+id/loginAbo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/pwdAboLabel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Mot de passe :" />
+
+    <EditText
+        android:id="@+id/pwdAbo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:text="Mot de passe" />
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Enregistrer" />
+
+</LinearLayout>
