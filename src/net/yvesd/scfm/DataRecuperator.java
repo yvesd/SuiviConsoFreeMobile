@@ -40,6 +40,7 @@ public class DataRecuperator
 		super.onPreExecute();
 	}
 
+	@Override
 	public List<String> doInBackground(DataRecuperatorParams... params) {
 
 		List<String> results = new ArrayList<String>();
@@ -56,7 +57,7 @@ public class DataRecuperator
 		super.onProgressUpdate(values);
 
 		for (ProgressUpdate pu : values) {
-			scfma.addToProgress(pu.getMsg());
+			scfma.addToProgress(pu.getRes(), pu.getArgs());
 			scfma.setProgressStatus(pu.getProgress());
 		}
 	}
@@ -80,7 +81,7 @@ public class DataRecuperator
 		try {
 			post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 		} catch (UnsupportedEncodingException e1) {
-			publishProgress(new ProgressUpdate("ERREUR 0100", 100));
+			publishProgress(new ProgressUpdate(R.string.log_erreur0100, 100));
 			return null;
 		}
 
@@ -101,14 +102,13 @@ public class DataRecuperator
 			String erreur = ExtracteurErreur.litErreur(sb1.toString());
 
 			if (erreur == null) {
-				publishProgress(new ProgressUpdate("Lecture du suivi conso", 66));
+				publishProgress(new ProgressUpdate(R.string.log_lecturesc, 66));
 			} else {
 				publishProgress(new ProgressUpdate(
-						"Impossible de s'identifier : " + erreur, 100));
+						R.string.log_identificationimpossible, 100, erreur));
 
 				publishProgress(new ProgressUpdate(
-						"Appuyez sur RETOUR, puis MENU pour renseigner les identifiants",
-						100));
+						R.string.log_instructionconfig, 100));
 
 				return null;
 			}
@@ -130,11 +130,10 @@ public class DataRecuperator
 			return sb.toString();
 
 		} catch (ClientProtocolException e) {
-			publishProgress(new ProgressUpdate("ERREUR 0200", 100));
+			publishProgress(new ProgressUpdate(R.string.log_erreur0200, 100));
 			return null;
 		} catch (IOException e) {
-			publishProgress(new ProgressUpdate(
-					"ERREUR 0300. Vérifiez votre connexion à Internet", 100));
+			publishProgress(new ProgressUpdate(R.string.log_erreur0300, 100));
 			return null;
 		}
 	}
@@ -146,21 +145,27 @@ public class DataRecuperator
 	}
 
 	static class ProgressUpdate {
-		private String msg;
+		private int res;
 		private int progress;
+		private Object[] args;
 
-		public ProgressUpdate(String msg, int progress) {
+		public ProgressUpdate(int res, int progress, Object... args) {
 			super();
-			this.msg = msg;
+			this.res = res;
 			this.progress = progress;
+			this.args = args;
 		}
 
-		public String getMsg() {
-			return msg;
+		public int getRes() {
+			return res;
 		}
 
 		public int getProgress() {
 			return progress;
+		}
+
+		public Object[] getArgs() {
+			return args;
 		}
 	}
 }

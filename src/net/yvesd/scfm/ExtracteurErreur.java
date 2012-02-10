@@ -4,6 +4,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+/**
+ * Extracteur de messages d'erreur de connexion
+ * 
+ * @author yves
+ */
 public class ExtracteurErreur {
 
 	/**
@@ -25,6 +30,5 @@ public class ExtracteurErreur {
 				return s;
 		} else
 			return null;
-
 	}
 }

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/enterIds" android:title="Saisir identifiants" 
-		android:icon="@android:drawable/ic_menu_edit" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/raffraichir"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="@string/menuitem_rafraichir"/>
+    <item
+        android:id="@+id/editAccounts"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/menuitem_editercomptes"/>
+
 </menu>

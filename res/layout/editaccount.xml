@@ -8,7 +8,7 @@
         android:id="@+id/loginAboLabel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Identifiant (login) :" />
+        android:text="@string/label_login" />
 
     <EditText
         android:id="@+id/loginAbo"
@@ -20,19 +20,30 @@
         android:id="@+id/pwdAboLabel"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Mot de passe :" />
+        android:text="@string/label_pwd" />
 
     <EditText
         android:id="@+id/pwdAbo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:text="Mot de passe" />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/save"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Enregistrer" />
+        android:text="@string/button_saveorupdate" />
+
+    <Button
+        android:id="@+id/retoursanssauvegarder"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_retoursanssauvegarder" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_delete" />
 
 </LinearLayout>
