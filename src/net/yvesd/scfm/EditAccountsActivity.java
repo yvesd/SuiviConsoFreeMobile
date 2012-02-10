@@ -10,7 +10,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class EditAccountsActivity extends ListActivity {
 
@@ -26,7 +25,7 @@ public class EditAccountsActivity extends ListActivity {
 		params = getSharedPreferences(SuiviConsoFreeMobileActivity.PREFS_NAME,
 				0);
 
-		String[] comptes;
+		final String[] comptes;
 
 		String comptesString = params.getString(
 				SuiviConsoFreeMobileActivity.PREF_KEY_LISTE_COMPTES, "");
@@ -35,8 +34,10 @@ public class EditAccountsActivity extends ListActivity {
 		else
 			comptes = comptesString.split(",");
 
+		String[] comptesAffichage = afficherPseudos(comptes);
+
 		setListAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, comptes));
+				android.R.layout.simple_list_item_1, comptesAffichage));
 
 		Button boutonCreerCompte = (Button) findViewById(R.id.createAccountButton);
 		Button boutonRetour = (Button) findViewById(R.id.retour);
@@ -62,11 +63,36 @@ public class EditAccountsActivity extends ListActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
-				TextView tv = (TextView) view;
-				String login = tv.getText().toString();
+				String login = comptes[position];
+
 				creerOuMajCompte(login);
 			}
 		});
+	}
+
+	/**
+	 * Renvoie un tableau contenant les pseudos des comptes, s'ils sont définis
+	 * dans les params. Si le pseudo d'un compte n'est pas renseigné, c'est son
+	 * identifiant qui est retourné à la place
+	 * 
+	 * @param comptes
+	 *            tableau d'identifiants de comptes
+	 * @return tableau de comptes pour affichage graphique
+	 */
+	protected String[] afficherPseudos(String[] comptes) {
+		String[] comptesAffichage = new String[comptes.length];
+
+		for (int i = 0; i < comptes.length; i++) {
+			String pseudo = params.getString(
+					SuiviConsoFreeMobileActivity.PREF_KEYPREFIX_PSEUDO_ABO
+							+ comptes[i], "");
+
+			if ("".equals(pseudo))
+				comptesAffichage[i] = comptes[i];
+			else
+				comptesAffichage[i] = pseudo;
+		}
+		return comptesAffichage;
 	}
 
 	private void creerOuMajCompte(String login) {

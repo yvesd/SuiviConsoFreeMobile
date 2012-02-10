@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <string name="app_name">Suivi conso Free Mobile v3</string>
+    <string name="app_name">Suivi conso Free Mobile v5</string>
     <string name="menuitem_editercomptes">Editer comptes</string>
     <string name="menuitem_voircompte">Voir %1$s</string>
     <string name="button_saveorupdate">Enregistrer / mettre à jour</string>
@@ -12,6 +12,7 @@
     <string name="label_login">Identifiant (login) :</string>
     <string name="label_pwd">Mot de passe :</string>
     <string name="label_help_deleteupdate">Cliquez sur un compte pour le modifier ou le supprimer</string>
+    <string name="label_pseudo">Nom d\'affichage du compte :</string>
     <string name="log_aucuncompte">Aucun compte n\'est sélectionné. Pressez RETOUR, puis MENU pour configurer les comptes, ou pour choisir un compte</string>
     <string name="log_suiviconsoillisible">Suivi conso illisible du site Free. Votre ligne est-elle active ? Contactez le développeur de l\'application</string>
     <string name="log_erreur0100">Erreur 0100. Contactez le développeur de l\'application</string>
@@ -20,5 +21,6 @@
     <string name="log_instructionconfig">Appuyez sur RETOUR, puis MENU pour configurer les comptes</string>
     <string name="log_erreur0200">Erreur 0200. Contactez le développeur de l\'application</string>
     <string name="log_erreur0300">Erreur 0300. Vérifiez votre connexion à Internet</string>
+    <string name="log_erreur0400">Erreur 0400. Impossible d\'encoder le mot de passe. Contactez le développeur de l\'application</string>
     <string name="menuitem_rafraichir">Rafraîchir</string>
 </resources>

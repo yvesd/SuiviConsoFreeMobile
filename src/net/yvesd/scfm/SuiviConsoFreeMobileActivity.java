@@ -7,6 +7,7 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,16 +24,22 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 	public static final String PREF_KEY_LISTE_COMPTES = "liste_comptes";
 	public static final String PREF_KEY_DERNIER_COMPTE = "dernier_compte";
 	public static final String PREF_KEYPREFIX_PWD_ABO = "pwd_abo.";
+	public static final String PREF_KEYPREFIX_PSEUDO_ABO = "pseudo_abo.";
+	protected static final String CLE_BUNDLE_SAUVEGARDE_ETAT = "net.yvesd.scfm.donneesConso";
 
 	String loginAbo = "";
 	String pwdAbo = "";
 	ProgressDialog progressDialog;
 	List<String> progressMessages = new ArrayList<String>(); // TODO refactor
 	SharedPreferences settings;
+	/**
+	 * Donnés de suivi conso à afficher
+	 */
+	String[] donneesConso = new String[] {};
 
 	@Override
-	public void onResume() {
-		super.onResume();
+	public void onCreate(Bundle configurationSauvegardee) {
+		super.onCreate(configurationSauvegardee);
 
 		// Restaurer préférences ou lancer première configuration
 		settings = getSharedPreferences(PREFS_NAME, 0);
@@ -49,7 +56,20 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 			pwdAbo = "";
 		}
 
-		lancerRequete();
+		if (configurationSauvegardee == null) {
+			lancerRequete();
+		} else {
+			donneesConso = configurationSauvegardee
+					.getStringArray(CLE_BUNDLE_SAUVEGARDE_ETAT);
+			displayData(donneesConso);
+		}
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+
+		outState.putStringArray(CLE_BUNDLE_SAUVEGARDE_ETAT, donneesConso);
 	}
 
 	protected void lancerRequete() {
@@ -107,9 +127,9 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 			if (rawHtmlData == null)
 				return;
 
-			String[] interpret = DataInterpreter.interpret(rawHtmlData);
+			donneesConso = DataInterpreter.interpret(rawHtmlData);
 
-			displayData(interpret);
+			displayData(donneesConso);
 			progressDialog.dismiss();
 
 		} catch (Exception e) {
@@ -138,9 +158,22 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 		String[] comptes = settings.getString(PREF_KEY_LISTE_COMPTES, "")
 				.split(",");
 		for (String compte : comptes) {
-			if (!(compte.equals("")))
+			if (!("".equals(compte))) {
+
+				String pseudo = settings.getString(PREF_KEYPREFIX_PSEUDO_ABO
+						+ compte, "");
+				String nomAffichage = "";
+
+				if ("".equals(pseudo))
+					nomAffichage = compte;
+				else
+					nomAffichage = pseudo;
+
 				menu.add(1, Integer.valueOf(compte), Menu.NONE,
-						getString(R.string.menuitem_voircompte, compte));
+						getString(R.string.menuitem_voircompte, nomAffichage));
+				// TODO attention, risque de téléscopage entre les identifiants
+				// et les ID des éléments android ?
+			}
 		}
 
 		return super.onPrepareOptionsMenu(menu);

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,8 +77,14 @@ public class DataRecuperator
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("login_abo", param
 				.getLoginAbo()));
-		nameValuePairs
-				.add(new BasicNameValuePair("pwd_abo", param.getPwdAbo()));
+		String pwdAbo;
+		try {
+			pwdAbo = URLEncoder.encode(param.getPwdAbo(), "UTF-8");
+		} catch (UnsupportedEncodingException e2) {
+			publishProgress(new ProgressUpdate(R.string.log_erreur0400, 100));
+			return null;
+		}
+		nameValuePairs.add(new BasicNameValuePair("pwd_abo", pwdAbo));
 		try {
 			post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 		} catch (UnsupportedEncodingException e1) {

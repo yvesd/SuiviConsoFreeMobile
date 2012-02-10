@@ -12,6 +12,7 @@ public class EditAccountActivity extends Activity {
 
 	private EditText loginAbo;
 	private EditText pwdAbo;
+	private EditText pseudoAbo;
 	private Button boutonValider;
 	private Button boutonSupprimer;
 	private SharedPreferences params;
@@ -20,6 +21,8 @@ public class EditAccountActivity extends Activity {
 	public static final String LOGIN_ABO_CLE = "net.yvesd.scfm.LOGIN_ABO_KEY";
 
 	public static final String PWD_ABO_CLE = "net.yvesd.scfm.PWD_ABO_KEY";
+
+	public static final String PSEUDO_ABO_CLE = "net.yvesd.scfm.PSEUDO_ABO_KEY";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class EditAccountActivity extends Activity {
 
 		this.loginAbo = (EditText) findViewById(R.id.loginAbo);
 		this.pwdAbo = (EditText) findViewById(R.id.pwdAbo);
+		this.pseudoAbo = (EditText) findViewById(R.id.pseudoAbo);
 		this.boutonValider = (Button) findViewById(R.id.save);
 		this.boutonSupprimer = (Button) findViewById(R.id.delete);
 		this.boutonRetour = (Button) findViewById(R.id.retoursanssauvegarder);
@@ -42,6 +46,9 @@ public class EditAccountActivity extends Activity {
 		this.pwdAbo.setText(params.getString(
 				SuiviConsoFreeMobileActivity.PREF_KEYPREFIX_PWD_ABO + loginAbo,
 				""));
+		this.pseudoAbo.setText(params.getString(
+				SuiviConsoFreeMobileActivity.PREF_KEYPREFIX_PSEUDO_ABO
+						+ loginAbo, ""));
 
 		this.boutonValider.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -77,6 +84,8 @@ public class EditAccountActivity extends Activity {
 
 		ed.putString(SuiviConsoFreeMobileActivity.PREF_KEYPREFIX_PWD_ABO
 				+ login, pwdAbo.getText().toString());
+		ed.putString(SuiviConsoFreeMobileActivity.PREF_KEYPREFIX_PSEUDO_ABO
+				+ login, pseudoAbo.getText().toString());
 
 		ajouterCompteAListe(ed, login);
 
@@ -104,6 +113,10 @@ public class EditAccountActivity extends Activity {
 
 		// Suppression du mot de passe
 		ed.remove(SuiviConsoFreeMobileActivity.PREF_KEYPREFIX_PWD_ABO + login);
+
+		// Suppression du pseudo
+		ed.remove(SuiviConsoFreeMobileActivity.PREF_KEYPREFIX_PSEUDO_ABO
+				+ login);
 
 		supprimerCompteDeListe(ed, login);
 
