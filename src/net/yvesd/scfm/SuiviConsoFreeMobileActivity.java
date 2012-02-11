@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 /**
  * Activité principale du programme
@@ -45,6 +46,31 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 	public void onCreate(Bundle configurationSauvegardee) {
 		super.onCreate(configurationSauvegardee);
 
+		chargerLoginPwd();
+
+		if (configurationSauvegardee == null) {
+			lancerRequete();
+		} else {
+			donneesConso = configurationSauvegardee
+					.getStringArray(CLE_BUNDLE_SAUVEGARDE_ETAT);
+			displayData(donneesConso);
+		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		// Ceci afin de gérer correctement la suppression de compte. Si
+		// l'utilisateur supprime le compte actuellement sélectionné, il faut
+		// que ce changement soit répercuté dans cette activité. Ajouté en v8
+		chargerLoginPwd();
+	}
+
+	/**
+	 * Charge le login/password depuis les préférences
+	 */
+	private void chargerLoginPwd() {
 		// Restaurer préférences ou lancer première configuration
 		settings = getSharedPreferences(PREFS_NAME, 0);
 		if (settings.contains(PREF_KEY_DERNIER_COMPTE)) {
@@ -58,14 +84,9 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 			// aucun compte n'est sélectionné)
 			loginAbo = "";
 			pwdAbo = "";
-		}
 
-		if (configurationSauvegardee == null) {
-			lancerRequete();
-		} else {
-			donneesConso = configurationSauvegardee
-					.getStringArray(CLE_BUNDLE_SAUVEGARDE_ETAT);
-			displayData(donneesConso);
+			Toast.makeText(this, R.string.infobulle_appuyezmenu,
+					Toast.LENGTH_LONG).show();
 		}
 	}
 
