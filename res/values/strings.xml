@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <string name="app_name">Suivi conso Free Mobile v5</string>
+    <string name="app_name">Suivi conso Free Mobile v6</string>
     <string name="menuitem_editercomptes">Editer comptes</string>
     <string name="menuitem_voircompte">Voir %1$s</string>
     <string name="button_saveorupdate">Enregistrer / mettre à jour</string>
