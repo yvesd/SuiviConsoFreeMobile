@@ -1,7 +1,9 @@
 package net.yvesd.scfm;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -32,6 +34,8 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 	ProgressDialog progressDialog;
 	List<String> progressMessages = new ArrayList<String>(); // TODO refactor
 	SharedPreferences settings;
+	Map<MenuItem, String> menuItemMap = new HashMap<MenuItem, String>();
+
 	/**
 	 * Donnés de suivi conso à afficher
 	 */
@@ -154,6 +158,8 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
+
+		menuItemMap.clear();
 		menu.removeGroup(1);
 		String[] comptes = settings.getString(PREF_KEY_LISTE_COMPTES, "")
 				.split(",");
@@ -169,10 +175,9 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 				else
 					nomAffichage = pseudo;
 
-				menu.add(1, Integer.valueOf(compte), Menu.NONE,
+				MenuItem mi = menu.add(1, Menu.NONE, Menu.NONE,
 						getString(R.string.menuitem_voircompte, nomAffichage));
-				// TODO attention, risque de téléscopage entre les identifiants
-				// et les ID des éléments android ?
+				menuItemMap.put(mi, compte);
 			}
 		}
 
@@ -181,6 +186,22 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+
+		if (menuItemMap.containsKey(item)) {
+			// C'est une entrée de menu de visualisation d'un compte
+
+			loginAbo = menuItemMap.get(item);
+			pwdAbo = settings.getString(PREF_KEYPREFIX_PWD_ABO + loginAbo, "");
+
+			SharedPreferences.Editor ed = settings.edit();
+			ed.putString(PREF_KEY_DERNIER_COMPTE, loginAbo);
+			ed.commit();
+
+			lancerRequete();
+
+			return true;
+		}
+
 		switch (item.getItemId()) {
 		case R.id.editAccounts:
 
@@ -198,16 +219,7 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 
 		default:
 
-			loginAbo = String.valueOf(item.getItemId());
-			pwdAbo = settings.getString(PREF_KEYPREFIX_PWD_ABO + loginAbo, "");
-
-			SharedPreferences.Editor ed = settings.edit();
-			ed.putString(PREF_KEY_DERNIER_COMPTE, loginAbo);
-			ed.commit();
-
-			lancerRequete();
-
-			return true;
+			return false;
 		}
 	}
 

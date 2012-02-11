@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <string name="app_name">Suivi conso Free Mobile v6</string>
+    <string name="app_name">Suivi conso Free Mobile v7</string>
     <string name="menuitem_editercomptes">Editer comptes</string>
     <string name="menuitem_voircompte">Voir %1$s</string>
     <string name="button_saveorupdate">Enregistrer / mettre à jour</string>
@@ -9,7 +9,7 @@
     <string name="button_creercompte">Ajouter un compte</string>
     <string name="button_retoursanssauvegarder">Retour sans sauvegarder</string>
     <string name="button_retour">Retour</string>
-    <string name="label_login">Identifiant (login) :</string>
+    <string name="label_login">Identifiant (ou login), fourni par e-mail lors de votre commande :</string>
     <string name="label_pwd">Mot de passe :</string>
     <string name="label_help_deleteupdate">Cliquez sur un compte pour le modifier ou le supprimer</string>
     <string name="label_pseudo">Nom d\'affichage du compte :</string>
