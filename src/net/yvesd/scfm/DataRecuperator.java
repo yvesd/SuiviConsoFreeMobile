@@ -28,6 +28,8 @@ public class DataRecuperator
 		extends
 		AsyncTask<DataRecuperatorParams, DataRecuperator.ProgressUpdate, List<String>> {
 
+	private static final String URL_SUIVICONSO_FREEMOBILE = "https://mobile.free.fr/moncompte/index.php?page=suiviconso";
+
 	SuiviConsoFreeMobileActivity scfma;
 	List<String> messages = new ArrayList<String>();
 
@@ -70,8 +72,7 @@ public class DataRecuperator
 		CookieStore mCookieStore = new BasicCookieStore();
 		mHttpContext.setAttribute(ClientContext.COOKIE_STORE, mCookieStore);
 
-		HttpPost post = new HttpPost(
-				"https://mobile.free.fr/moncompte/index.php?page=suiviconso");
+		HttpPost post = new HttpPost(URL_SUIVICONSO_FREEMOBILE);
 
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("login_abo", param
@@ -113,8 +114,7 @@ public class DataRecuperator
 				return null;
 			}
 
-			HttpGet httpGet = new HttpGet(
-					"https://mobile.free.fr/moncompte/index.php?page=suiviconso");
+			HttpGet httpGet = new HttpGet(URL_SUIVICONSO_FREEMOBILE);
 			HttpResponse getResponse = client.execute(httpGet, mHttpContext);
 
 			HttpEntity responseEntity2 = getResponse.getEntity();
