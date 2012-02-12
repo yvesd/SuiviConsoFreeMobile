@@ -27,20 +27,38 @@ public class DataInterpreter {
 		Element inner01 = divs.get(0).select("div").get(0);
 		Element inner02 = inner01.select("div").first().select("div").first();
 
-		Element infosTitulaireConteneur = inner02.select(
-				"p.informationsTitulaire").first();
+		extraireInfosTitulaire(list, inner02);
 
-		Elements infosTitulaire = infosTitulaireConteneur.select("label");
-		for (Element e : infosTitulaire) {
-			list.add(e.text());
-		}
-
-		list.add(" ");
+		ajouterSeparateur(list);
 
 		list.add(inner02.select("p.date").text());
 
 		Element table = inner02.select("table").first();
 		Elements tableLines = table.select("tr");
+
+		extraireCompteursFrance(list, tableLines);
+
+		extraireRecapitulatif(list, tableLines);
+
+		// Conversion en tableau
+		String[] tab = new String[list.size()];
+		int i = 0;
+		for (String str : list) {
+			tab[i++] = str;
+		}
+
+		return tab;
+	}
+
+	private static void extraireRecapitulatif(List<String> list,
+			Elements tableLines) {
+		list.add(tableLines.get(3).text());
+		list.add(tableLines.get(4).text());
+		list.add(tableLines.get(5).text());
+	}
+
+	private static void extraireCompteursFrance(List<String> list,
+			Elements tableLines) {
 		Element row = tableLines.get(1);
 		Element rowValeurs = tableLines.get(2);
 		Elements titres = row.select("td");
@@ -53,18 +71,20 @@ public class DataInterpreter {
 			s += itValeurs.hasNext() ? itValeurs.next().text() : "Inconnu";
 			list.add(s);
 		}
+	}
 
-		list.add(tableLines.get(3).text());
-		list.add(tableLines.get(4).text());
-		list.add(tableLines.get(5).text());
+	private static void ajouterSeparateur(List<String> list) {
+		list.add(" ");
+	}
 
-		// Conversion en tableau
-		String[] tab = new String[list.size()];
-		int i = 0;
-		for (String str : list) {
-			tab[i++] = str;
+	private static void extraireInfosTitulaire(List<String> list,
+			Element inner02) {
+		Element infosTitulaireConteneur = inner02.select(
+				"p.informationsTitulaire").first();
+
+		Elements infosTitulaire = infosTitulaireConteneur.select("label");
+		for (Element e : infosTitulaire) {
+			list.add(e.text());
 		}
-
-		return tab;
 	}
 }
