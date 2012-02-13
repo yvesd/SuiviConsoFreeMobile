@@ -10,10 +10,14 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -40,7 +44,7 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 	/**
 	 * Donnés de suivi conso à afficher
 	 */
-	String[] donneesConso = new String[] {};
+	DonnesCompteur[] donneesConso = new DonnesCompteur[] {};
 
 	@Override
 	public void onCreate(Bundle configurationSauvegardee) {
@@ -51,8 +55,8 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 		if (configurationSauvegardee == null) {
 			lancerRequete();
 		} else {
-			donneesConso = configurationSauvegardee
-					.getStringArray(CLE_BUNDLE_SAUVEGARDE_ETAT);
+			donneesConso = (DonnesCompteur[]) configurationSauvegardee
+					.getParcelableArray(CLE_BUNDLE_SAUVEGARDE_ETAT);
 			displayData(donneesConso);
 		}
 	}
@@ -94,11 +98,11 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 
-		outState.putStringArray(CLE_BUNDLE_SAUVEGARDE_ETAT, donneesConso);
+		outState.putParcelableArray(CLE_BUNDLE_SAUVEGARDE_ETAT, donneesConso);
 	}
 
 	protected void lancerRequete() {
-		displayData(new String[] {});
+		displayData(new DonnesCompteur[] {});
 		progressMessages.clear();
 
 		progressDialog = new ProgressDialog(this);
@@ -120,6 +124,7 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 		setProgressStatus(12);
 
 		DataRecuperator dataRecuperator = new DataRecuperator(this);
+		// DataRecuperatorMock dataRecuperator = new DataRecuperatorMock(this);
 		DataRecuperatorParams params = new DataRecuperatorParams();
 		params.setLoginAbo(loginAbo);
 		params.setPwdAbo(pwdAbo);
@@ -158,6 +163,7 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 			progressDialog.dismiss();
 
 		} catch (Exception e) {
+			Log.w("", "Suivi conso illisible", e);
 			addToProgress(getString(R.string.log_suiviconsoillisible));
 			setProgressStatus(100);
 			return;
@@ -165,9 +171,28 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 
 	}
 
-	private void displayData(String[] interpret) {
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
-				interpret));
+	private void displayData(DonnesCompteur[] interpret) {
+
+		setListAdapter(new ArrayAdapter<DonnesCompteur>(this,
+				R.layout.list_item, R.id.compteur, interpret) {
+
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent) {
+
+				TextView tv = (TextView) super.getView(position, convertView,
+						parent);
+
+				DonnesCompteur donnesCompteur = getItem(position);
+				if (donnesCompteur.getRessourceId() != null)
+					tv.setCompoundDrawablesWithIntrinsicBounds(
+							donnesCompteur.getRessourceId(), 0, 0, 0);
+				else
+					tv.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+
+				return tv;
+			}
+
+		});
 	}
 
 	@Override
@@ -243,5 +268,4 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 			return false;
 		}
 	}
-
 }
