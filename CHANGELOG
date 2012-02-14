@@ -15,3 +15,28 @@ v8 :
 
 v7 :
  - Correction d'un bug lorsque l'on saisit un identifiant de plus de 8 caractères
+
+v6 :
+ - Retour arrière des "apports" de la v5. Contactez-moi si vous avez des problèmes d'identification
+
+v5 :
+ - les mots de passe avec des caractères spéciaux (# par exemple) devraient être gérés à présent
+
+v4 :
+ - Possibilité d'utiliser des pseudos (alias) pour vos comptes
+ - Eviter les rechargements inutiles lors du changement d'orientation de l'écran
+
+v3 :
+ - Gestion du multi-comptes
+ - Interface plus claire, code plus robuste et propre
+ - Passage de targetSdk a 10, pour éviter des soucis avec Android 3.x et + qui pourraient ne pas raffraîchir le menu (et c'est difficile d'appeler la méthode pour invalider le menu tout en conservant la compatibilité android 1.6
+
+v2 :
+ - Correction du problème de rafraîchissement lorsque l'on ne quitte pas avec la touche Retour
+ - Meilleure gestion des erreurs, messages plus clairs
+ - L'utilisateur est mieux informé de la progression.
+ - Meilleur support des Android plus récents et des petits écrans.
+
+v1 :
+ - Version initiale
+
