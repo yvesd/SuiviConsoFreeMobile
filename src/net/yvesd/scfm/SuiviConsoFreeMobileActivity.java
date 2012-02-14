@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,6 +31,7 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 	public static final String PREFS_NAME = "SuiviConsoFreeMobilePrefs";
 	public static final String PREF_KEY_LISTE_COMPTES = "liste_comptes";
 	public static final String PREF_KEY_DERNIER_COMPTE = "dernier_compte";
+	public static final String PREF_KEY_THEME = "theme";
 	public static final String PREF_KEYPREFIX_PWD_ABO = "pwd_abo.";
 	public static final String PREF_KEYPREFIX_PSEUDO_ABO = "pseudo_abo.";
 	protected static final String CLE_BUNDLE_SAUVEGARDE_ETAT = "net.yvesd.scfm.donneesConso";
@@ -48,22 +50,49 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 
 	@Override
 	public void onCreate(Bundle configurationSauvegardee) {
+
+		chargerPreferences();
+
+		GestionnaireThemes gt = new GestionnaireThemes(this);
+		gt.chargerThemeChoisi();
+
 		super.onCreate(configurationSauvegardee);
 
 		chargerLoginPwd();
 
 		if (configurationSauvegardee == null) {
+
 			lancerRequete();
+
 		} else {
-			donneesConso = (DonnesCompteur[]) configurationSauvegardee
+
+			Parcelable[] donnesConsoParcel = configurationSauvegardee
 					.getParcelableArray(CLE_BUNDLE_SAUVEGARDE_ETAT);
-			displayData(donneesConso);
+
+			if (donnesConsoParcel != null
+					&& donnesConsoParcel instanceof DonnesCompteur[]) {
+
+				donneesConso = (DonnesCompteur[]) donnesConsoParcel;
+				displayData(donneesConso);
+
+			} else {
+				// TODO comprendre pourquoi on arrive dans ce cas
+				// (ClassCastException : ne peut caster un Parcelable[] en
+				// DonneesConso[]). Est-ce parce que la Activity est tuée ?
+				//
+				// Contournement : on relance la requête, comme lors du premier
+				// démarrage
+
+				lancerRequete();
+			}
 		}
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+
+		chargerPreferences();
 
 		// Ceci afin de gérer correctement la suppression de compte. Si
 		// l'utilisateur supprime le compte actuellement sélectionné, il faut
@@ -76,7 +105,6 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 	 */
 	private void chargerLoginPwd() {
 		// Restaurer préférences ou lancer première configuration
-		settings = getSharedPreferences(PREFS_NAME, 0);
 		if (settings.contains(PREF_KEY_DERNIER_COMPTE)) {
 
 			loginAbo = settings.getString(PREF_KEY_DERNIER_COMPTE, "");
@@ -92,6 +120,10 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 			Toast.makeText(this, R.string.infobulle_appuyezmenu,
 					Toast.LENGTH_LONG).show();
 		}
+	}
+
+	protected void chargerPreferences() {
+		settings = getSharedPreferences(PREFS_NAME, 0);
 	}
 
 	@Override
@@ -263,9 +295,29 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 
 			return true;
 
+		case R.id.basculerTheme:
+
+			GestionnaireThemes gt = new GestionnaireThemes(this);
+			gt.basculerTheme();
+			rechargerActivite();
+
 		default:
 
 			return false;
 		}
+	}
+
+	protected void rechargerActivite() {
+
+		// Les lignes commentées sont utilisables a partir de l'API 5
+
+		Intent intent = getIntent();
+		// overridePendingTransition(0, 0);
+		// intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		finish();
+
+		// overridePendingTransition(0, 0);
+		startActivity(intent);
+
 	}
 }

@@ -1,5 +1,8 @@
 package net.yvesd.scfm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +20,13 @@ public class EditAccountsActivity extends ListActivity {
 	ListView lv;
 
 	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		GestionnaireThemes gt = new GestionnaireThemes(this);
+		gt.chargerThemeChoisi();
+		super.onCreate(savedInstanceState);
+	}
+
+	@Override
 	protected void onResume() {
 		super.onResume();
 		setContentView(R.layout.editaccounts);
@@ -26,13 +36,16 @@ public class EditAccountsActivity extends ListActivity {
 				0);
 
 		final String[] comptes;
+		String[] comptesNonFiltres;
 
 		String comptesString = params.getString(
 				SuiviConsoFreeMobileActivity.PREF_KEY_LISTE_COMPTES, "");
 		if ("".equals(comptesString))
-			comptes = new String[] {};
+			comptesNonFiltres = new String[] {};
 		else
-			comptes = comptesString.split(",");
+			comptesNonFiltres = comptesString.split(",");
+
+		comptes = filtrerComptesVides(comptesNonFiltres);
 
 		String[] comptesAffichage = afficherPseudos(comptes);
 
@@ -68,6 +81,26 @@ public class EditAccountsActivity extends ListActivity {
 				creerOuMajCompte(login);
 			}
 		});
+	}
+
+	/**
+	 * @deprecated Faire en sorte qu'il n'y ait pas de comptes vides à l'avenir
+	 * 
+	 * @return
+	 */
+	@Deprecated
+	protected String[] filtrerComptesVides(String[] comptesNonFiltres) {
+
+		List<String> listeFiltree = new ArrayList<String>();
+
+		for (String compte : comptesNonFiltres) {
+			if (!("".equals(compte)))
+				listeFiltree.add(compte);
+		}
+
+		String[] resultat = new String[listeFiltree.size()];
+		resultat = listeFiltree.toArray(resultat);
+		return resultat;
 	}
 
 	/**

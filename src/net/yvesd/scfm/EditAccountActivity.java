@@ -26,6 +26,10 @@ public class EditAccountActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
+		GestionnaireThemes gt = new GestionnaireThemes(this);
+		gt.chargerThemeChoisi();
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editaccount);
 
@@ -81,6 +85,11 @@ public class EditAccountActivity extends Activity {
 
 		SharedPreferences.Editor ed = params.edit();
 		String login = loginAbo.getText().toString();
+
+		// ne rien faire si login vide TODO afficher message
+		if ("".equals(login))
+			finish();
+		// Fin TODO
 
 		ed.putString(SuiviConsoFreeMobileActivity.PREF_KEYPREFIX_PWD_ABO
 				+ login, pwdAbo.getText().toString());

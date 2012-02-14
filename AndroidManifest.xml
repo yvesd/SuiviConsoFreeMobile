@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.yvesd.scfm"
-    android:versionCode="9"
-    android:versionName="9" >
+    android:versionCode="10"
+    android:versionName="10" >
 
     <uses-sdk
         android:minSdkVersion="4"
@@ -12,8 +12,7 @@
 
     <application
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@android:style/Theme.Light" >
+        android:label="@string/app_name" >
         <activity
             android:name=".SuiviConsoFreeMobileActivity"
             android:label="@string/app_name" >

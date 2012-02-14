@@ -9,5 +9,9 @@
         android:id="@+id/editAccounts"
         android:icon="@android:drawable/ic_menu_edit"
         android:title="@string/menuitem_editercomptes"/>
-
+        <item
+        android:id="@+id/basculerTheme"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="@string/menuitem_changertheme"/>
+    
 </menu>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <string name="app_name">Suivi conso Free Mobile v9</string>
+    <string name="app_name">Suivi conso Free Mobile v10</string>
     <string name="menuitem_editercomptes">Editer comptes Free Mobile</string>
     <string name="menuitem_voircompte">Voir %1$s</string>
     <string name="menuitem_rafraichir">Rafraîchir</string>
+    <string name="menuitem_changertheme">Changer de thème</string>
     <string name="button_saveorupdate">Enregistrer / mettre à jour</string>
     <string name="button_delete">Supprimer le compte</string>
     <string name="button_creercompte">Ajouter un compte</string>
