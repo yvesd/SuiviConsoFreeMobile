@@ -1,0 +1,17 @@
+v10 :
+ - Correction d'un Force Close dans certains cas au lancement
+ - Retour du thème noir (choix thème noir ou thème blanc)
+ - Nouvelles icônes
+ - Les comptes sans nom n'apparaissent plus
+
+v9 :
+ - Affichage du hors forfait à l'étranger
+ - Thème blanc
+ - Icônes en face des compteurs
+ - Nouvelle icône de Stéphane (merci à lui)
+
+v8 :
+ - Meilleur guidage dans l'application
+
+v7 :
+ - Correction d'un bug lorsque l'on saisit un identifiant de plus de 8 caractères

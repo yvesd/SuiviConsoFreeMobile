@@ -1,0 +1,34 @@
+### FREE A MODIFIE LE SUIVI CONSO (14/02/2012 vers 17h) ###
+### CETTE APPLICATION SERA INUTILISABLE JUSQU'A UNE MAJ EN V11 ##
+### Le problème n'est pas la V10, mais le fait que le site de Free a changé, et que je dois adapter mon programme. ###
+### MERCI D'ETRE PATIENT, CELA NE SE FAIT PAS TOUT SEUL ###
+###
+### V11 MISE A JOUR, version de dépannage. Merci de ne pas la considérer comme une version valide. Une V12 suivra et sera encore meilleure.
+
+
+Application sans publicité, gratuite, légère et rapide pour les abonnés Free Mobile.
+
+Maintenant avec la gestion de plusieurs comptes.
+
+Se connecte sur le site Web de Free Mobile pour afficher les informations relatives au suivi conso.
+
+Cette application a besoin d'une connexion internet pour fonctionner (Wifi, ou Data). Les possesseurs de forfait à 2€ peuvent utiliser l'application via le Wifi (attention au hors forfait si utilisation de la Data).
+
+Contactez-moi par e-mail pour m'informer du résultat des tests ou signaler des problèmes.
+
+Cette application n'a aucun rapport avec la société Free Mobile, elle a été créée par un enthousiaste en espérant vous être utile.
+
+Vos identifiants transitent sur le réseau de façon chiffrée vers les serveurs de Free Mobile (Chiffrement SSL), et sont stockés dans vote téléphone uniquement. Aucune autre utilisation n'en est faite. Le code source est disponible à : https://github.com/yvesd/SuiviConsoFreeMobile
+
+Je tiens à remercier :
+ - Stéphane (de solnondesign.com) pour l'icône
+ - Julien Delille pour les informations m'ayant permis d'ajouter le suivi conso à l'étranger
+
+A venir (du premier qui sera traité, jusqu'au dernier) :
+ * CONSOMMATION DETAILLEE ;)
+ * Refonte de l'interface : plus jolie, avec des graphiques, icônes et couleurs pour les forfaits 2€ genre Vous avez consommé 30minutes sur 60 avec une barre indiquant le pourcentage du forfait déjà consommé
+ * Traduction anglaise
+ * Affichage des factures détaillées ?
+
+
+Dernière mise à jour de cette page le 14 février à 17:07
