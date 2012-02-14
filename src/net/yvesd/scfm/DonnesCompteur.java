@@ -10,8 +10,18 @@ public class DonnesCompteur implements Parcelable {
 
 	public DonnesCompteur(String texte) {
 		super();
+//		texte = texte.replace(oldChar, newChar)
 		this.texte = texte;
 	}
+	
+	
+
+	public DonnesCompteur(String texte, Integer ressourceId) {
+		this(texte);
+		this.ressourceId = ressourceId;
+	}
+
+
 
 	public static final Parcelable.Creator<DonnesCompteur> CREATOR = new Parcelable.Creator<DonnesCompteur>() {
 		@Override

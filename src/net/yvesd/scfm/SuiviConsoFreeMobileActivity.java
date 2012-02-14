@@ -156,7 +156,7 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 		setProgressStatus(12);
 
 		DataRecuperator dataRecuperator = new DataRecuperator(this);
-		// DataRecuperatorMock dataRecuperator = new DataRecuperatorMock(this);
+//		 DataRecuperatorMock dataRecuperator = new DataRecuperatorMock(this);
 		DataRecuperatorParams params = new DataRecuperatorParams();
 		params.setLoginAbo(loginAbo);
 		params.setPwdAbo(pwdAbo);
