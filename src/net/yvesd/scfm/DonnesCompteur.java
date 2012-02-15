@@ -7,28 +7,40 @@ public class DonnesCompteur implements Parcelable {
 
 	private String texte;
 	private Integer ressourceId;
+	private Integer color;
 
 	public DonnesCompteur(String texte) {
 		super();
-//		texte = texte.replace(oldChar, newChar)
 		this.texte = texte;
 	}
-	
-	
 
 	public DonnesCompteur(String texte, Integer ressourceId) {
 		this(texte);
 		this.ressourceId = ressourceId;
 	}
 
+	public DonnesCompteur(String texte, Integer ressourceId, int color) {
+		this(texte, ressourceId);
+		this.color = color;
+	}
 
+	public Integer getColor() {
+		return color;
+	}
+
+	public void setColor(Integer color) {
+		this.color = color;
+	}
 
 	public static final Parcelable.Creator<DonnesCompteur> CREATOR = new Parcelable.Creator<DonnesCompteur>() {
 		@Override
 		public DonnesCompteur createFromParcel(Parcel in) {
 			Integer ressourceIds = (Integer) in.readValue(null);
+			Integer color = (Integer) in.readValue(null);
+
 			DonnesCompteur donnesCompteur = new DonnesCompteur(in.readString());
 			donnesCompteur.setRessourceId(ressourceIds);
+			donnesCompteur.setRessourceId(color);
 			return donnesCompteur;
 		}
 
@@ -66,6 +78,7 @@ public class DonnesCompteur implements Parcelable {
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeValue(ressourceId);
+		dest.writeValue(color);
 		dest.writeString(texte);
 	}
 

@@ -9,6 +9,11 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -152,11 +157,13 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 			return;
 		}
 
-		addToProgress("Identification auprès de Free Mobile");
+		addToProgress("Identification auprès de Free Mobile"); // TODO
+																// externalize
+																// string
 		setProgressStatus(12);
 
 		DataRecuperator dataRecuperator = new DataRecuperator(this);
-//		 DataRecuperatorMock dataRecuperator = new DataRecuperatorMock(this);
+		// DataRecuperatorMock dataRecuperator = new DataRecuperatorMock(this);
 		DataRecuperatorParams params = new DataRecuperatorParams();
 		params.setLoginAbo(loginAbo);
 		params.setPwdAbo(pwdAbo);
@@ -211,20 +218,44 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
 
-				TextView tv = (TextView) super.getView(position, convertView,
-						parent);
+				if (convertView == null) {
+					convertView = super.getView(position, convertView, parent);
+				}
+
+				TextView tv = (TextView) convertView;
 
 				DonnesCompteur donnesCompteur = getItem(position);
-				if (donnesCompteur.getRessourceId() != null)
-					tv.setCompoundDrawablesWithIntrinsicBounds(
-							donnesCompteur.getRessourceId(), 0, 0, 0);
-				else
+
+				if (donnesCompteur.getRessourceId() == null) {
+
 					tv.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 
+				} else {
+
+					Drawable drawbl;
+
+					Resources r = getResources();
+					drawbl = r.getDrawable(donnesCompteur.getRessourceId());
+
+					// POC colorize
+					ColorFilter cf = new LightingColorFilter(
+							donnesCompteur.getColor(), Color.BLACK);
+					drawbl.setColorFilter(cf);
+					// Fin POC colorize
+
+					tv.setCompoundDrawablesWithIntrinsicBounds(drawbl, null,
+							null, null);
+				}
+
+				tv.setText(donnesCompteur.getTexte());
 				return tv;
 			}
 
 		});
+	}
+
+	static class ViewVolder {
+		Drawable drawable;
 	}
 
 	@Override

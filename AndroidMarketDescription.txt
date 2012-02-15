@@ -1,12 +1,6 @@
-### FREE A MODIFIE LE SUIVI CONSO (14/02/2012 vers 17h) ###
-### CETTE APPLICATION SERA INUTILISABLE JUSQU'A UNE MAJ EN V11 ##
-### Le problème n'est pas la V10, mais le fait que le site de Free a changé, et que je dois adapter mon programme. ###
-### MERCI D'ETRE PATIENT, CELA NE SE FAIT PAS TOUT SEUL ###
-###
-### V11 MISE A JOUR, version de dépannage. Merci de ne pas la considérer comme une version valide. Une V12 suivra et sera encore meilleure.
-
-
 Application sans publicité, gratuite, légère et rapide pour les abonnés Free Mobile.
+
+Note : depuis le 14 février 2012, le suivi conso a évolué sur le site de Free. Comme ce programme analyse les données du site, les versions avant la v11 ne sont pas compatibles. Mettez à jour.
 
 Maintenant avec la gestion de plusieurs comptes.
 

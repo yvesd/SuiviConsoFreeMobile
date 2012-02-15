@@ -3,28 +3,80 @@ package net.yvesd.scfm;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.graphics.Color;
+
 public class GestionIcones {
 
-	private Map<String, Integer> CORRESP = new HashMap<String, Integer>();
+	/**
+	 * #348017 Medium Spring Green
+	 */
+	final public static int COULEUR_DEFAUT_VOIX = Color.rgb(52, 128, 23);
+
+	/**
+	 * #2B60DE Royal Blue
+	 */
+	final public static int COULEUR_DEFAUT_DATA = Color.rgb(43, 96, 222);
+
+	/**
+	 * #FF6600 Orange(tm)
+	 */
+	final public static int COULEUR_DEFAUT_NUM_SPECIAUX = Color
+			.rgb(255, 102, 0);
+
+	/**
+	 * #5CB3FF Steel Blue1
+	 */
+	final public static int COULEUR_DEFAUT_MESSAGES = Color.rgb(92, 179, 255);
+
+	/**
+	 * #FDD017 Gold1
+	 */
+	final public static int COULEUR_DEFAUT_HF = Color.rgb(253, 208, 23);
+
+	/**
+	 * Gris 50%
+	 */
+	final public static int COULEUR_DEFAUT_INCONNU = Color.rgb(128, 128, 128);
+
+	/**
+	 * Correspondances d'icônes et de couleurs
+	 */
+	private Map<String, IconeCouleur> CORRESP = new HashMap<String, IconeCouleur>();
 
 	public GestionIcones() {
-		CORRESP.put("voix", R.drawable.compteur_voix);
-		CORRESP.put("Numéros speciaux *", R.drawable.compteur_voix);
-		CORRESP.put("renvoi d'appel", R.drawable.compteur_voix);
-		CORRESP.put("sms", R.drawable.compteur_messages);
-		CORRESP.put("mms", R.drawable.compteur_messages);
-		CORRESP.put("data", R.drawable.compteur_data);
-		CORRESP.put("hors forfait voix", R.drawable.compteur_horsforfait);
-		CORRESP.put("hors forfait sms", R.drawable.compteur_horsforfait);
-		CORRESP.put("hors forfait mms", R.drawable.compteur_horsforfait);
-		CORRESP.put("hors forfait data", R.drawable.compteur_horsforfait);
+		CORRESP.put("Conso VOIX", new IconeCouleur(R.drawable.ic_voix,
+				COULEUR_DEFAUT_VOIX));
+		CORRESP.put("Appels numéros spéciaux", new IconeCouleur(
+				R.drawable.ic_voix_spec, COULEUR_DEFAUT_NUM_SPECIAUX));
+		CORRESP.put("Conso SMS", new IconeCouleur(R.drawable.ic_messages,
+				COULEUR_DEFAUT_MESSAGES));
+		CORRESP.put("Conso MMS", new IconeCouleur(R.drawable.ic_messages,
+				COULEUR_DEFAUT_MESSAGES));
+		CORRESP.put("Conso DATA", new IconeCouleur(R.drawable.ic_data,
+				COULEUR_DEFAUT_DATA));
 	}
 
-	public Integer trouveIconePour(String texte) {
-		for (Map.Entry<String, Integer> e : CORRESP.entrySet()) {
-			if (texte.startsWith(e.getKey()))
-				return e.getValue();
+	public IconeCouleur trouveIconePour(String texte) {
+		for (Map.Entry<String, IconeCouleur> e : CORRESP.entrySet()) {
+			if (texte.equals(e.getKey())) {
+				IconeCouleur value = e.getValue();
+				IconeCouleur iconeCouleur = new IconeCouleur(value.icone,
+						value.couleur);
+				return iconeCouleur;
+			}
 		}
-		return R.drawable.comptur_inconnu;
+		return new IconeCouleur(R.drawable.ic_inconnu, COULEUR_DEFAUT_INCONNU);
+	}
+
+	@Deprecated
+	static class IconeCouleur {
+		public IconeCouleur(int icone, int couleur) {
+			super();
+			this.icone = icone;
+			this.couleur = couleur;
+		}
+
+		public int icone;
+		public int couleur;
 	}
 }

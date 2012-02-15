@@ -1,3 +1,11 @@
+v12 :
+ - Rétablissement de l'affichage du suivi conso (devrait fonctionner à nouveau)
+ - Changement d'icônes et réagencement des rubriques
+ - Gestion du début de forfait (pas d'informations a afficher)
+
+v11 :
+ - Version intermédiaire pour rétablr la compatibilité avec le site de suivi conso qui a évolué le 14/2/12
+
 v10 :
  - Correction d'un Force Close dans certains cas au lancement
  - Retour du thème noir (choix thème noir ou thème blanc)
