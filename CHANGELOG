@@ -1,3 +1,11 @@
+v14 :
+- Rétablissement des compteurs totaux
+
+v13 :
+ - Icônes : taille et écart au texte
+ - La page d'édition de compte peut défiler (petits écrans)
+ - Légère réorganisation du menu
+
 v12 :
  - Rétablissement de l'affichage du suivi conso (devrait fonctionner à nouveau)
  - Changement d'icônes et réagencement des rubriques
