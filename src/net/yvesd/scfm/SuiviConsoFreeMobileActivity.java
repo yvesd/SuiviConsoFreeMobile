@@ -284,8 +284,9 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 				else
 					nomAffichage = pseudo;
 
-				MenuItem mi = menu.add(1, Menu.NONE, Menu.NONE,
+				MenuItem mi = menu.add(1, Menu.NONE, Menu.FIRST,
 						getString(R.string.menuitem_voircompte, nomAffichage));
+				mi.setIcon(android.R.drawable.ic_menu_view);
 				menuItemMap.put(mi, compte);
 			}
 		}
@@ -320,17 +321,12 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 
 			return true;
 
-		case R.id.raffraichir:
-
-			lancerRequete();
-
-			return true;
-
 		case R.id.basculerTheme:
 
 			GestionnaireThemes gt = new GestionnaireThemes(this);
 			gt.basculerTheme();
 			rechargerActivite();
+			return true;
 
 		default:
 

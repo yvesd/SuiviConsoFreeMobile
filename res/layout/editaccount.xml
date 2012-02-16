@@ -1,61 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
 
-    <TextView
-        android:id="@+id/pseudoAboLabel"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_pseudo" />
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/pseudoAbo"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
+        <TextView
+            android:id="@+id/pseudoAboLabel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_pseudo" />
 
-    <TextView
-        android:id="@+id/loginAboLabel"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_login" />
+        <EditText
+            android:id="@+id/pseudoAbo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/loginAbo"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
+        <TextView
+            android:id="@+id/loginAboLabel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_login" />
 
-    <TextView
-        android:id="@+id/pwdAboLabel"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/label_pwd" />
+        <EditText
+            android:id="@+id/loginAbo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
 
-    <EditText
-        android:id="@+id/pwdAbo"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword" />
+        <TextView
+            android:id="@+id/pwdAboLabel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_pwd" />
 
-    <Button
-        android:id="@+id/save"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_saveorupdate" />
+        <EditText
+            android:id="@+id/pwdAbo"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/retoursanssauvegarder"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_retoursanssauvegarder" />
+        <Button
+            android:id="@+id/save"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_saveorupdate" />
 
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_delete" />
+        <Button
+            android:id="@+id/retoursanssauvegarder"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_retoursanssauvegarder" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_delete" />
+    </LinearLayout>
+
+</ScrollView>

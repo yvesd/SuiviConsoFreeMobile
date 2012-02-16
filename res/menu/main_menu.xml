@@ -2,16 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/raffraichir"
-        android:icon="@android:drawable/ic_menu_view"
-        android:title="@string/menuitem_rafraichir"/>
-    <item
         android:id="@+id/editAccounts"
         android:icon="@android:drawable/ic_menu_edit"
+        android:orderInCategory="64000"
         android:title="@string/menuitem_editercomptes"/>
-        <item
+    <item
         android:id="@+id/basculerTheme"
-        android:icon="@android:drawable/ic_menu_view"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="64010"
         android:title="@string/menuitem_changertheme"/>
-    
+
 </menu>
