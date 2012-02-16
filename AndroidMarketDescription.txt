@@ -2,6 +2,8 @@ Application sans publicité, gratuite, légère et rapide pour les abonnés Free
 
 Note : depuis le 14 février 2012, le suivi conso a évolué sur le site de Free. Comme ce programme analyse les données du site, les versions avant la v11 ne sont pas compatibles. Mettez à jour.
 
+Note 2 : Il manque les totaux dans la v12. ceci sera résolu très bientôt en v13
+
 Maintenant avec la gestion de plusieurs comptes.
 
 Se connecte sur le site Web de Free Mobile pour afficher les informations relatives au suivi conso.
@@ -25,4 +27,4 @@ A venir (du premier qui sera traité, jusqu'au dernier) :
  * Affichage des factures détaillées ?
 
 
-Dernière mise à jour de cette page le 14 février à 17:07
+Dernière mise à jour de cette page le 15 février à 9:07
