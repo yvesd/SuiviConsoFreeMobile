@@ -41,6 +41,11 @@ public class DataInterpreter {
 
 		extraireDetailsConso(list, d, "international");
 
+		DonnesCompteur donnesCompteurT = new DonnesCompteur("\nMONTANT TOTAL");
+		list.add(donnesCompteurT);
+
+		extraireMontantTotal(list, d);
+
 		// Conversion en tableau
 		DonnesCompteur[] tab = new DonnesCompteur[list.size()];
 		int i = 0;
@@ -49,6 +54,29 @@ public class DataInterpreter {
 		}
 
 		return tab;
+	}
+
+	private static void extraireMontantTotal(List<DonnesCompteur> list,
+			Document d) {
+
+		Elements elements = d.select(".montant p");
+		StringBuffer sb = new StringBuffer();
+
+		Iterator<Element> it = elements.iterator();
+
+		if (it.hasNext()) {
+			String txt = it.next().text();
+			sb.append(txt);
+		}
+
+		while (it.hasNext()) {
+			String txt = it.next().text();
+			sb.append("\n");
+			sb.append(txt);
+		}
+
+		DonnesCompteur c = new DonnesCompteur(sb.toString());
+		list.add(c);
 	}
 
 	private static void ajouterTousElementsClasse(List<DonnesCompteur> list,
