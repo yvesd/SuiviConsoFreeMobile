@@ -17,7 +17,6 @@ Je tiens à remercier :
  - Julien Delille pour les informations m'ayant permis d'ajouter le suivi conso à l'étranger
 
 A venir (du premier qui sera traité, jusqu'au dernier) :
- * Couleur des icônes paramétrables
  * Amélioration de l'interface graphique : Sections (national et international) pliables, amélioration de la lisibilité (souligné, couleur, ...)
  * Meilleur support Android 3 et + (Honeycomb, ICS)
  * Widget
@@ -27,4 +26,4 @@ A venir (du premier qui sera traité, jusqu'au dernier) :
  * Affichage des factures détaillées ?
 
 
-Dernière mise à jour de cette page le 18 février à 12:43
+Dernière mise à jour de cette page le 19 février à 12:36
