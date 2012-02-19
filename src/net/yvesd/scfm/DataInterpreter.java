@@ -29,17 +29,20 @@ public class DataInterpreter {
 
 		ajouterTousElementsClasse(list, d, "resumeConso");
 
-		DonnesCompteur donnesCompteurN = new DonnesCompteur("\nNATIONAL");
+		DonnesCompteur donnesCompteurN = new DonnesCompteur(
+				"<br><font color=#C00000><b>NATIONAL</b></font");
 		list.add(donnesCompteurN);
 
 		extraireDetailsConso(list, d, "national");
 
-		DonnesCompteur donnesCompteurI = new DonnesCompteur("\nINTERNATIONAL");
+		DonnesCompteur donnesCompteurI = new DonnesCompteur(
+				"<br><font color=#C00000><b>INTERNATIONAL</b></font");
 		list.add(donnesCompteurI);
 
 		extraireDetailsConso(list, d, "international");
 
-		DonnesCompteur donnesCompteurT = new DonnesCompteur("\nMONTANT TOTAL");
+		DonnesCompteur donnesCompteurT = new DonnesCompteur(
+				"<br><font color=#C00000><b>MONTANT TOTAL</b></font");
 		list.add(donnesCompteurT);
 
 		extraireMontantTotal(list, d);
@@ -69,7 +72,7 @@ public class DataInterpreter {
 
 		while (it.hasNext()) {
 			String txt = it.next().text();
-			sb.append("\n");
+			sb.append("<br>");
 			sb.append(txt);
 		}
 
@@ -107,13 +110,13 @@ public class DataInterpreter {
 			StringBuffer sb = new StringBuffer();
 			GestionIcones.IconeCouleur ic = gi.trouveIconePour(titre);
 
-			sb.append(titre);
+			sb.append("<b>" + titre + "</b>");
 
 			if (itCD.hasNext()) {
 				Element e = itCD.next();
 				String cdTexte = e.text();
 				if (!("".equals(cdTexte))) {
-					sb.append("\n");
+					sb.append("<br>");
 					sb.append(cdTexte);
 				}
 			}
@@ -128,20 +131,26 @@ public class DataInterpreter {
 
 	private static void extraireHorsForfait(List<DonnesCompteur> list,
 			Document d, String cssc) {
+
 		Elements hF = d.select("." + cssc + " .horsForfait");
 		StringBuffer hfSb = new StringBuffer();
 		Iterator<Element> itHF = hF.iterator();
-		if (itHF.hasNext())
-			hfSb.append(itHF.next().text());
-		else
+		if (itHF.hasNext()) {
+			hfSb.append("<b>Hors forfait</b><br>");
+			String text = itHF.next().text();
+			text = supprimerMentionHorsForfait(text);
+			hfSb.append(text);
+		} else {
 			hfSb.append("Pas d'information de suivi conso à afficher. Début du mois ?");
+		}
 
 		while (itHF.hasNext()) {
 			Element e = itHF.next();
 
 			String text = e.text();
 			if (!("".equals(text))) {
-				hfSb.append("\n");
+				text = supprimerMentionHorsForfait(text);
+				hfSb.append("<br>");
 				hfSb.append(text);
 			}
 		}
@@ -150,5 +159,12 @@ public class DataInterpreter {
 				R.drawable.ic_euro,
 				SuiviConsoFreeMobileActivity.PREF_KEY_COULEUR_ICONE_HORSFORFAIT,
 				GestionIcones.COULEUR_DEFAUT_HF));
+	}
+
+	private static String supprimerMentionHorsForfait(String text) {
+
+		text = text.replaceAll("Hors forfait", "");
+		text = text.trim();
+		return text;
 	}
 }

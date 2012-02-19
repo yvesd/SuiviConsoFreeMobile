@@ -16,6 +16,7 @@ import android.graphics.LightingColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -263,7 +264,7 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 							null, null);
 				}
 
-				tv.setText(donnesCompteur.getTexte());
+				tv.setText(Html.fromHtml(donnesCompteur.getTexte()));
 				return tv;
 			}
 
