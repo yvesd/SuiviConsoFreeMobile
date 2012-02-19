@@ -18,11 +18,13 @@ Je tiens à remercier :
 
 A venir (du premier qui sera traité, jusqu'au dernier) :
  * Couleur des icônes paramétrables
+ * Amélioration de l'interface graphique : Sections (national et international) pliables, amélioration de la lisibilité (souligné, couleur, ...)
+ * Meilleur support Android 3 et + (Honeycomb, ICS)
  * Widget
  * Consommation détaillée
- * Refonte de l'interface : plus jolie, avec des graphiques, icônes et couleurs pour les forfaits 2€ genre Vous avez consommé 30minutes sur 60 avec une barre indiquant le pourcentage du forfait déjà consommé. Avec également du formattage (souligné, couleur, ...)
+ * Interface graphique : ajout de graphiques, icônes et couleurs pour les forfaits 2€ genre Vous avez consommé 30minutes sur 60 avec une barre indiquant le pourcentage du forfait déjà consommé. 
  * Traduction anglaise ?
  * Affichage des factures détaillées ?
 
 
-Dernière mise à jour de cette page le 15 février à 3:37
+Dernière mise à jour de cette page le 18 février à 12:43
