@@ -11,8 +11,6 @@ import org.jsoup.select.Elements;
 
 public class DataInterpreter {
 
-	protected static final String ENTETE_LIGNE_ETRANGER = "A l'étranger";
-
 	/**
 	 * Interprète les données de la page Suivi Conso de Free en informations
 	 * affichables à l'écran
@@ -119,7 +117,9 @@ public class DataInterpreter {
 					sb.append(cdTexte);
 				}
 			}
-			list.add(new DonnesCompteur(sb.toString(), ic.icone, ic.couleur));
+
+			list.add(new DonnesCompteur(sb.toString(), ic.icone,
+					ic.nomClePreference, ic.couleurDefaut));
 		}
 
 		extraireHorsForfait(list, d, cssClass);
@@ -145,7 +145,10 @@ public class DataInterpreter {
 				hfSb.append(text);
 			}
 		}
-		list.add(new DonnesCompteur(hfSb.toString(), R.drawable.ic_euro,
+		list.add(new DonnesCompteur(
+				hfSb.toString(),
+				R.drawable.ic_euro,
+				SuiviConsoFreeMobileActivity.PREF_KEY_COULEUR_ICONE_HORSFORFAIT,
 				GestionIcones.COULEUR_DEFAUT_HF));
 	}
 }

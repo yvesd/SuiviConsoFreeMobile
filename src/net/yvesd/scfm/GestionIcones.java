@@ -39,44 +39,55 @@ public class GestionIcones {
 	final public static int COULEUR_DEFAUT_INCONNU = Color.rgb(128, 128, 128);
 
 	/**
-	 * Correspondances d'icônes et de couleurs
+	 * Correspondances entre les libellés présents sur Free Mobile et le nom de
+	 * la clé contenant la couleur et la couleur par défaut
 	 */
 	private Map<String, IconeCouleur> CORRESP = new HashMap<String, IconeCouleur>();
 
 	public GestionIcones() {
 		CORRESP.put("Conso VOIX", new IconeCouleur(R.drawable.ic_voix,
+				SuiviConsoFreeMobileActivity.PREF_KEY_COULEUR_ICONE_VOIX,
 				COULEUR_DEFAUT_VOIX));
-		CORRESP.put("Appels numéros spéciaux", new IconeCouleur(
-				R.drawable.ic_voix_spec, COULEUR_DEFAUT_NUM_SPECIAUX));
+		CORRESP.put(
+				"Appels numéros spéciaux",
+				new IconeCouleur(
+						R.drawable.ic_voix_spec,
+						SuiviConsoFreeMobileActivity.PREF_KEY_COULEUR_ICONE_NUM_SPECIAUX,
+						COULEUR_DEFAUT_NUM_SPECIAUX));
 		CORRESP.put("Conso SMS", new IconeCouleur(R.drawable.ic_messages,
+				SuiviConsoFreeMobileActivity.PREF_KEY_COULEUR_ICONE_SMS_MMS,
 				COULEUR_DEFAUT_MESSAGES));
 		CORRESP.put("Conso MMS", new IconeCouleur(R.drawable.ic_messages,
+				SuiviConsoFreeMobileActivity.PREF_KEY_COULEUR_ICONE_SMS_MMS,
 				COULEUR_DEFAUT_MESSAGES));
 		CORRESP.put("Conso DATA", new IconeCouleur(R.drawable.ic_data,
+				SuiviConsoFreeMobileActivity.PREF_KEY_COULEUR_ICONE_DATA,
 				COULEUR_DEFAUT_DATA));
 	}
 
 	public IconeCouleur trouveIconePour(String texte) {
 		for (Map.Entry<String, IconeCouleur> e : CORRESP.entrySet()) {
 			if (texte.equals(e.getKey())) {
-				IconeCouleur value = e.getValue();
-				IconeCouleur iconeCouleur = new IconeCouleur(value.icone,
-						value.couleur);
-				return iconeCouleur;
+				return e.getValue();
 			}
 		}
-		return new IconeCouleur(R.drawable.ic_inconnu, COULEUR_DEFAUT_INCONNU);
+		return new IconeCouleur(R.drawable.ic_inconnu, null, Color.GRAY);
 	}
 
-	@Deprecated
+	/**
+	 * TOOD refactor
+	 */
 	static class IconeCouleur {
-		public IconeCouleur(int icone, int couleur) {
+		public IconeCouleur(int icone, String nomClePreference,
+				int couleurDefaut) {
 			super();
 			this.icone = icone;
-			this.couleur = couleur;
+			this.nomClePreference = nomClePreference;
+			this.couleurDefaut = couleurDefaut;
 		}
 
 		public int icone;
-		public int couleur;
+		public String nomClePreference;
+		public int couleurDefaut;
 	}
 }

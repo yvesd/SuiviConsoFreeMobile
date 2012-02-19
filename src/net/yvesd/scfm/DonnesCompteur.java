@@ -7,7 +7,8 @@ public class DonnesCompteur implements Parcelable {
 
 	private String texte;
 	private Integer ressourceId;
-	private Integer color;
+	private String nomClePreference;
+	private int couleurDefaut;
 
 	public DonnesCompteur(String texte) {
 		super();
@@ -19,28 +20,33 @@ public class DonnesCompteur implements Parcelable {
 		this.ressourceId = ressourceId;
 	}
 
-	public DonnesCompteur(String texte, Integer ressourceId, int color) {
+	public DonnesCompteur(String texte, Integer ressourceId,
+			String nomClePreference, int couleurDefaut) {
+
 		this(texte, ressourceId);
-		this.color = color;
+		this.nomClePreference = nomClePreference;
+		this.couleurDefaut = couleurDefaut;
 	}
 
-	public Integer getColor() {
-		return color;
+	public String getNomClePreference() {
+		return nomClePreference;
 	}
 
-	public void setColor(Integer color) {
-		this.color = color;
+	public void setNomClePreference(String nomClePreference) {
+		this.nomClePreference = nomClePreference;
 	}
 
 	public static final Parcelable.Creator<DonnesCompteur> CREATOR = new Parcelable.Creator<DonnesCompteur>() {
 		@Override
 		public DonnesCompteur createFromParcel(Parcel in) {
 			Integer ressourceIds = (Integer) in.readValue(null);
-			Integer color = (Integer) in.readValue(null);
+			String nomClePreference = in.readString();
+			int couleurDefaut = in.readInt();
 
 			DonnesCompteur donnesCompteur = new DonnesCompteur(in.readString());
 			donnesCompteur.setRessourceId(ressourceIds);
-			donnesCompteur.setRessourceId(color);
+			donnesCompteur.setNomClePreference(nomClePreference);
+			donnesCompteur.setCouleurDefaut(couleurDefaut);
 			return donnesCompteur;
 		}
 
@@ -78,12 +84,21 @@ public class DonnesCompteur implements Parcelable {
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeValue(ressourceId);
-		dest.writeValue(color);
+		dest.writeString(nomClePreference);
 		dest.writeString(texte);
+		dest.writeInt(couleurDefaut);
 	}
 
 	@Override
 	public String toString() {
 		return texte;
+	}
+
+	public int getCouleurDefaut() {
+		return couleurDefaut;
+	}
+
+	public void setCouleurDefaut(int couleurDefaut) {
+		this.couleurDefaut = couleurDefaut;
 	}
 }

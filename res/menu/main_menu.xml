@@ -11,5 +11,10 @@
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="64010"
         android:title="@string/menuitem_changertheme"/>
+    <item
+        android:id="@+id/options"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:orderInCategory="64020"
+        android:title="@string/menuitem_options"/>
 
 </menu>

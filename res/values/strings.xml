@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <string name="app_name">Suivi conso Free Mobile v14</string>
+    <string name="app_name">Suivi conso Free Mobile v15</string>
     <string name="menuitem_editercomptes">Editer comptes Free Mobile</string>
     <string name="menuitem_voircompte">Voir %1$s</string>
     <string name="menuitem_rafraichir">Rafraîchir</string>
     <string name="menuitem_changertheme">Changer de thème</string>
+    <string name="menuitem_options">Options</string>
     <string name="button_saveorupdate">Enregistrer / mettre à jour</string>
     <string name="button_delete">Supprimer le compte</string>
     <string name="button_creercompte">Ajouter un compte</string>
     <string name="button_retoursanssauvegarder">Retour sans sauvegarder</string>
     <string name="button_retour">Retour</string>
+    <string name="bouton_retour">Retour</string>
+    <string name="button_changerCouleur">Choisir couleur</string>
+    <string name="button_retablirCouleur">Rétablir couleur</string>
+    <string name="button_telecharger_oi_colorpicker">Télécharger</string>
+    <string name="button_ne_pas_telecharger_oi_colorpicker">Annuler</string>
+    <string name="button_choixcouleur_retour">Retour</string>
     <string name="label_login">Identifiant (ou login), fourni par Free Mobile lors de votre commande :</string>
     <string name="label_pwd">Mot de passe, fourni dans l\'e-mail :</string>
     <string name="label_help_deleteupdate">Cliquez sur un compte Free Mobile dans la liste pour le modifier ou le supprimer</string>
     <string name="label_pseudo">Nom d\'affichage (ou alias, ou pseudo), facultatif :</string>
+    <string name="label_telecharger_openintent_colorpicker">Il est nécessaire de télécharger OI Color Picker, de OpenIntents (gratuit) depuis Android Market pour pouvoir personnaliser les couleurs des icônes.</string>
     <string name="log_aucuncompte">Aucun compte Free Mobile n\'est sélectionné. Pressez RETOUR, puis MENU. Si [Voir (nom du compte)] s\'affiche, cliquez dessus. Sinon cliquez sur [Editer comptes Free Mobile] pour créer un compte Free Mobile</string>
     <string name="log_suiviconsoillisible">Suivi conso illisible du site Free. Votre ligne est-elle active ? Contactez le développeur de l\'application</string>
     <string name="log_erreur0100">Erreur 0100. Contactez le développeur de l\'application</string>
@@ -24,4 +32,5 @@
     <string name="log_erreur0200">Erreur 0200. Contactez le développeur de l\'application</string>
     <string name="log_erreur0300">Erreur 0300. Vérifiez votre connexion à Internet. Vous devez pouvoir surfer avec un navigateur Web.</string>
     <string name="infobulle_appuyezmenu">Appuyez sur la touche MENU pour commencer</string>
+
 </resources>

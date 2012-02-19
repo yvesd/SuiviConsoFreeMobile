@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.yvesd.scfm"
-    android:versionCode="14"
-    android:versionName="14" >
+    android:versionCode="15"
+    android:versionName="15" >
 
     <uses-sdk
         android:minSdkVersion="4"
@@ -29,6 +29,10 @@
         <activity
             android:name=".EditAccountActivity"
             android:label="Edition compte Free Mobile" >
+        </activity>
+        <activity
+            android:name=".OptionActivity"
+            android:label="Options du programme" >
         </activity>
     </application>
 

@@ -37,6 +37,11 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 	public static final String PREF_KEY_LISTE_COMPTES = "liste_comptes";
 	public static final String PREF_KEY_DERNIER_COMPTE = "dernier_compte";
 	public static final String PREF_KEY_THEME = "theme";
+	public static final String PREF_KEY_COULEUR_ICONE_VOIX = "couleur_icone.conso_voix";
+	public static final String PREF_KEY_COULEUR_ICONE_NUM_SPECIAUX = "couleur_icone.conso_num_speciaux";
+	public static final String PREF_KEY_COULEUR_ICONE_SMS_MMS = "couleur_icone.conso_sms_mms";
+	public static final String PREF_KEY_COULEUR_ICONE_DATA = "couleur_icone.conso_data";
+	public static final String PREF_KEY_COULEUR_ICONE_HORSFORFAIT = "couleur_icone.hors_forfait";
 	public static final String PREF_KEYPREFIX_PWD_ABO = "pwd_abo.";
 	public static final String PREF_KEYPREFIX_PSEUDO_ABO = "pseudo_abo.";
 	protected static final String CLE_BUNDLE_SAUVEGARDE_ETAT = "net.yvesd.scfm.donneesConso";
@@ -103,6 +108,8 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 		// l'utilisateur supprime le compte actuellement sélectionné, il faut
 		// que ce changement soit répercuté dans cette activité. Ajouté en v8
 		chargerLoginPwd();
+
+		displayData(donneesConso); // TODO refactor. Doublon avec handleResult
 	}
 
 	/**
@@ -237,9 +244,18 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 					Resources r = getResources();
 					drawbl = r.getDrawable(donnesCompteur.getRessourceId());
 
-					// POC colorize
-					ColorFilter cf = new LightingColorFilter(
-							donnesCompteur.getColor(), Color.BLACK);
+					// POC colorize TODO REFACTOR
+					String nomClePreference = donnesCompteur
+							.getNomClePreference();
+					int couleur;
+					if (nomClePreference != null) {
+						couleur = settings.getInt(nomClePreference,
+								donnesCompteur.getCouleurDefaut());
+					} else {
+						couleur = donnesCompteur.getCouleurDefaut();
+					}
+					ColorFilter cf = new LightingColorFilter(couleur,
+							Color.BLACK);
 					drawbl.setColorFilter(cf);
 					// Fin POC colorize
 
@@ -327,6 +343,10 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 			gt.basculerTheme();
 			rechargerActivite();
 			return true;
+
+		case R.id.options:
+			Intent intent2 = new Intent(this, OptionActivity.class);
+			startActivity(intent2);
 
 		default:
 
