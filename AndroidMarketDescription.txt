@@ -1,3 +1,16 @@
+LE 22/02/2012 à 18h30, FREE A CHANGE SON SITE
+Seule la version 18 fonctionne (testé le 23/02/2012 à 0:36 -- rien ne garantit que ça va durer)
+
+Chers utilisateurs,
+
+Free ayant changé son système d'authentification sur le site mobile.free.fr ce jour (22/02/2012 à 18:30), j'ai pensé qu'il était temps pour moi de retirer mon application.
+
+Finalement, ayant réussi à contourner leur système, j'ai tout de même décider de mettre à jour vers une version 18, qui fonctionne jusqu'à nouvel ordre...
+
+Je souhaite vous remercier tous et toutes pour vos messages, vos votes, vos contributions, vos retours d'informations. C'était une expérience très très intéressante pour moi. Mais Free, par sa modification de site, souhaite visiblement empêcher les gens de développer ce genre d'application.
+
+
+=============================
 Application sans publicité, gratuite, légère et rapide pour les abonnés Free Mobile.
 
 Maintenant avec la gestion de plusieurs comptes.
@@ -26,4 +39,4 @@ A venir (du premier qui sera traité, jusqu'au dernier) :
  * Traduction anglaise ?
 
 
-Dernière mise à jour de cette page le 22 février à 01:33
+Dernière mise à jour de cette page le 23 février à 00:53
