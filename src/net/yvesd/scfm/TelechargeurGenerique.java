@@ -6,7 +6,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -23,6 +27,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public abstract class TelechargeurGenerique
 		extends
@@ -73,17 +78,49 @@ public abstract class TelechargeurGenerique
 		}
 	}
 
+	protected String recupererPageConnexion(BasicHttpContext mHttpContext) {
+
+		HttpGet get = new HttpGet(getUrlConnexion());
+		HttpResponse getResponse;
+		StringBuffer sb1 = new StringBuffer();
+		try {
+			getResponse = httpClient.execute(get, mHttpContext);
+			HttpEntity responseEntity = getResponse.getEntity();
+			InputStream is = responseEntity.getContent();
+			BufferedReader in = new BufferedReader(new InputStreamReader(is));
+
+			String l;
+			while ((l = in.readLine()) != null) {
+				sb1.append(l);
+				sb1.append("\n");
+			}
+		} catch (Exception e) {
+			publishProgress(new ProgressUpdate(R.string.log_erreur0600, 0));
+			return "";
+		}
+
+		return sb1.toString();
+	}
+
 	private String downloadConsoData(DataRecuperatorParams param) {
 
 		BasicHttpContext mHttpContext = new BasicHttpContext();
 		CookieStore mCookieStore = new BasicCookieStore();
 		mHttpContext.setAttribute(ClientContext.COOKIE_STORE, mCookieStore);
 
+		String pageConnexion = recupererPageConnexion(mHttpContext);
+
+		String identifiantCode = getScrambledIdent(pageConnexion,
+				param.getLoginAbo());
+
 		HttpPost post = new HttpPost(getUrlConnexion());
 
+		post.addHeader("Referer", URL_INITIALE_CONNEXION);
+
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("login_abo", param
-				.getLoginAbo()));
+
+		nameValuePairs
+				.add(new BasicNameValuePair("login_abo", identifiantCode));
 		nameValuePairs
 				.add(new BasicNameValuePair("pwd_abo", param.getPwdAbo()));
 		try {
@@ -134,6 +171,20 @@ public abstract class TelechargeurGenerique
 			publishProgress(new ProgressUpdate(R.string.log_erreur0300, 100));
 			return null;
 		}
+	}
+
+	protected String getScrambledIdent(String pageConnexion, String login) {
+		Map<Integer, Integer> map = getIdentMap(pageConnexion);
+		String scrambledLogin = "";
+		for (int i = 0; i < login.length(); i++) {
+			String charac = login.substring(i, i + 1);
+			Integer characInteger = Integer.valueOf(charac);
+			if (map.containsKey(characInteger)) {
+				scrambledLogin += map.get(characInteger);
+			}
+		}
+		Log.d("", "Scrambled login : " + scrambledLogin);
+		return scrambledLogin;
 	}
 
 	/**
@@ -215,5 +266,41 @@ public abstract class TelechargeurGenerique
 		public Object[] getArgs() {
 			return args;
 		}
+	}
+
+	/**
+	 * 
+	 * @param fluxHtml
+	 * @return Map Clé : numéro dans l'identifiant, Valeur : position
+	 */
+	public Map<Integer, Integer> getIdentMap(String fluxHtml) {
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+
+		List<String> matches = new ArrayList<String>();
+
+		Pattern p1 = Pattern
+				.compile("(ident_addNumber\\([0-9]+,\\s*[0-9]+\\))");
+
+		Matcher m1 = p1.matcher(fluxHtml);
+		while (m1.find()) {
+			matches.add(m1.group(1));
+		}
+
+		for (String s : matches) {
+			Pattern p2 = Pattern
+					.compile("ident_addNumber\\(([0-9]+),\\s*([0-9]+)\\)");
+			Matcher m2 = p2.matcher(s);
+			while (m2.find()) {
+				String a1 = m2.group(1);
+				String a2 = m2.group(2);
+				Integer ai1 = Integer.valueOf(a1);
+				Integer ai2 = Integer.valueOf(a2);
+
+				map.put(ai1, ai2);
+				Log.d("", ai1 + " ==> " + ai2);
+			}
+		}
+
+		return map;
 	}
 }

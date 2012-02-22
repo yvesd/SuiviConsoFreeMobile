@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <string name="app_name">Suivi conso Free Mobile v17</string>
+    <string name="app_name">Suivi conso Free Mobile v18</string>
     <string name="menuitem_editercomptes">Editer comptes Free Mobile</string>
     <string name="menuitem_voircompte">Voir %1$s</string>
     <string name="menuitem_rafraichir">Rafraîchir</string>
@@ -34,6 +34,7 @@
     <string name="log_erreur0200">Erreur 0200. Contactez le développeur de l\'application</string>
     <string name="log_erreur0300">Erreur 0300. Vérifiez votre connexion à Internet. Vous devez pouvoir surfer avec un navigateur Web.</string>
     <string name="log_erreur0400">Erreur 0400. Contactez le développeur de l\'application</string>
+    <string name="log_erreur0600">Erreur 0600. Contactez le développeur de l\'application</string>
     <string name="infobulle_appuyezmenu">Appuyez sur la touche MENU pour commencer</string>
 
 </resources>
