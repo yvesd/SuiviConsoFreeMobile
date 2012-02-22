@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.yvesd.scfm"
-    android:versionCode="16"
-    android:versionName="16" >
+    android:versionCode="17"
+    android:versionName="17" >
 
     <uses-sdk
         android:minSdkVersion="4"
@@ -34,6 +34,7 @@
             android:name=".OptionActivity"
             android:label="Options du programme" >
         </activity>
+        <activity android:label="Consommation détaillée [Expérimental]" android:name=".AfficherSuiviconsoDetailleActivity"></activity>
     </application>
 
 </manifest>

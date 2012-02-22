@@ -20,10 +20,10 @@ A venir (du premier qui sera traité, jusqu'au dernier) :
  * Amélioration de l'interface graphique : Sections (national et international) pliables
  * Meilleur support Android 3 et + (Honeycomb, ICS)
  * Widget
- * Consommation détaillée
  * Interface graphique : ajout de graphiques, icônes et couleurs pour les forfaits 2€ genre Vous avez consommé 30minutes sur 60 avec une barre indiquant le pourcentage du forfait déjà consommé. 
- * Traduction anglaise ?
  * Affichage des factures détaillées ?
+ * Possibilité de trier et filtrer dans la conso détaillée. Affichage plus joli.
+ * Traduction anglaise ?
 
 
-Dernière mise à jour de cette page le 20 février à 00:41
+Dernière mise à jour de cette page le 22 février à 01:33

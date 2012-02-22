@@ -24,22 +24,30 @@ import org.apache.http.protocol.BasicHttpContext;
 
 import android.os.AsyncTask;
 
-public class DataRecuperator
+public abstract class TelechargeurGenerique
 		extends
-		AsyncTask<DataRecuperatorParams, DataRecuperator.ProgressUpdate, List<String>> {
+		AsyncTask<DataRecuperatorParams, TelechargeurGenerique.ProgressUpdate, List<String>> {
 
-	private static final String URL_SUIVICONSO_FREEMOBILE = "https://mobile.free.fr/moncompte/index.php?page=suiviconso";
+	/**
+	 * URL de connexion par défaut
+	 */
+	private static final String URL_INITIALE_CONNEXION = "https://mobile.free.fr/moncompte/index.php?page=suiviconso";
 
-	SuiviConsoFreeMobileActivity scfma;
+	CanWaitForStream activity;
 	List<String> messages = new ArrayList<String>();
 
-	public DataRecuperator(SuiviConsoFreeMobileActivity scfma) {
-		this.scfma = scfma;
+	protected DefaultHttpClient httpClient;
+
+	public TelechargeurGenerique(CanWaitForStream activity,
+			DefaultHttpClient httpClient) {
+		this.activity = activity;
+		this.httpClient = httpClient;
 	}
 
-	@Override
-	protected void onPreExecute() {
-		super.onPreExecute();
+	protected abstract String getUrlCible();
+
+	protected String getUrlConnexion() {
+		return URL_INITIALE_CONNEXION;
 	}
 
 	@Override
@@ -55,24 +63,23 @@ public class DataRecuperator
 	}
 
 	@Override
-	protected void onProgressUpdate(DataRecuperator.ProgressUpdate... values) {
+	protected void onProgressUpdate(
+			TelechargeurGenerique.ProgressUpdate... values) {
 		super.onProgressUpdate(values);
 
 		for (ProgressUpdate pu : values) {
-			scfma.addToProgress(pu.getRes(), pu.getArgs());
-			scfma.setProgressStatus(pu.getProgress());
+			activity.addToProgress(pu.getRes(), pu.getArgs());
+			activity.setProgressStatus(pu.getProgress());
 		}
 	}
 
 	private String downloadConsoData(DataRecuperatorParams param) {
-		// Instantiate the custom HttpClient
-		DefaultHttpClient client = new MyHttpClient(scfma);
 
 		BasicHttpContext mHttpContext = new BasicHttpContext();
 		CookieStore mCookieStore = new BasicCookieStore();
 		mHttpContext.setAttribute(ClientContext.COOKIE_STORE, mCookieStore);
 
-		HttpPost post = new HttpPost(URL_SUIVICONSO_FREEMOBILE);
+		HttpPost post = new HttpPost(getUrlConnexion());
 
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("login_abo", param
@@ -88,7 +95,7 @@ public class DataRecuperator
 
 		HttpResponse postResponse;
 		try {
-			postResponse = client.execute(post, mHttpContext);
+			postResponse = httpClient.execute(post, mHttpContext);
 			HttpEntity responseEntity = postResponse.getEntity();
 			InputStream is = responseEntity.getContent();
 			BufferedReader in = new BufferedReader(new InputStreamReader(is));
@@ -103,7 +110,8 @@ public class DataRecuperator
 			String erreur = ExtracteurErreur.litErreur(sb1.toString());
 
 			if (erreur == null) {
-				publishProgress(new ProgressUpdate(R.string.log_lecturesc, 66));
+				publishProgress(new ProgressUpdate(R.string.log_lecturedonnees,
+						66));
 			} else {
 				publishProgress(new ProgressUpdate(
 						R.string.log_identificationimpossible, 100, erreur));
@@ -114,20 +122,10 @@ public class DataRecuperator
 				return null;
 			}
 
-			HttpGet httpGet = new HttpGet(URL_SUIVICONSO_FREEMOBILE);
-			HttpResponse getResponse = client.execute(httpGet, mHttpContext);
+			String donnesLues = lectureDonnees(mHttpContext,
+					param.getLoginAbo());
 
-			HttpEntity responseEntity2 = getResponse.getEntity();
-			InputStream is2 = responseEntity2.getContent();
-			BufferedReader in2 = new BufferedReader(new InputStreamReader(is2));
-
-			StringBuffer sb = new StringBuffer();
-			String l2;
-			while ((l2 = in2.readLine()) != null) {
-				sb.append(l2);
-			}
-
-			return sb.toString();
+			return donnesLues;
 
 		} catch (ClientProtocolException e) {
 			publishProgress(new ProgressUpdate(R.string.log_erreur0200, 100));
@@ -138,10 +136,60 @@ public class DataRecuperator
 		}
 	}
 
+	/**
+	 * <p>
+	 * Méthode qui va réellement effectuer la requête "métier" sur le site Free.
+	 * Elle doit également retourner les données.
+	 * 
+	 * <p>
+	 * Cette méthode est destinée à être surchargée selon le type de requêtes
+	 * qu'il y à a faire, et selon les paramètres a insérer dans la requête (en
+	 * particulier dans les cas de HTTP POST). La méthode ici est une
+	 * implémentation par défaut HTTP GET.
+	 * 
+	 * @param mHttpContext
+	 *            Contexte HTTP (transporte notamment les cookies
+	 * @return Données lues
+	 * @throws IOException
+	 * @throws ClientProtocolException
+	 */
+	protected String lectureDonnees(BasicHttpContext mHttpContext, String login)
+			throws IOException, ClientProtocolException {
+
+		HttpGet httpGet = new HttpGet(getUrlCible());
+
+		HttpResponse getResponse = httpClient.execute(httpGet, mHttpContext);
+
+		String donneesLues = litDonnesDepuisHttpResponse(getResponse);
+
+		return donneesLues;
+	}
+
+	/**
+	 * Constitue une string à partir des de la HttpResponse
+	 * 
+	 * @param getResponse
+	 * @return
+	 * @throws IOException
+	 */
+	protected String litDonnesDepuisHttpResponse(HttpResponse getResponse)
+			throws IOException {
+		HttpEntity responseEntity2 = getResponse.getEntity();
+		InputStream is2 = responseEntity2.getContent();
+		BufferedReader in2 = new BufferedReader(new InputStreamReader(is2));
+
+		StringBuffer sb = new StringBuffer();
+		String l2;
+		while ((l2 = in2.readLine()) != null) {
+			sb.append(l2);
+		}
+		return sb.toString();
+	}
+
 	@Override
 	protected void onPostExecute(List<String> result) {
 		super.onPostExecute(result);
-		scfma.handleResult(result);
+		activity.handleResult(result);
 	}
 
 	static class ProgressUpdate {

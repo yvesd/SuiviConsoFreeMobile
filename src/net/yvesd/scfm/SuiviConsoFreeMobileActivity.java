@@ -32,7 +32,8 @@ import android.widget.Toast;
  * 
  * @author Yves Dessertine <yves.dessertine2@gmail.com>
  */
-public class SuiviConsoFreeMobileActivity extends ListActivity {
+public class SuiviConsoFreeMobileActivity extends ListActivity implements
+		CanWaitForStream {
 
 	public static final String PREFS_NAME = "SuiviConsoFreeMobilePrefs";
 	public static final String PREF_KEY_LISTE_COMPTES = "liste_comptes";
@@ -68,6 +69,8 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 		gt.chargerThemeChoisi();
 
 		super.onCreate(configurationSauvegardee);
+
+		setContentView(R.layout.main_layout);
 
 		chargerLoginPwd();
 
@@ -170,7 +173,8 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 																// string
 		setProgressStatus(12);
 
-		DataRecuperator dataRecuperator = new DataRecuperator(this);
+		TelechargeurDonnesConso dataRecuperator = new TelechargeurDonnesConso(
+				this, new MyHttpClient(this));
 		// DataRecuperatorMock dataRecuperator = new DataRecuperatorMock(this);
 		DataRecuperatorParams params = new DataRecuperatorParams();
 		params.setLoginAbo(loginAbo);
@@ -189,15 +193,19 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 		progressDialog.setMessage(displayed);
 	}
 
-	protected void addToProgress(int res, Object... args) {
+	@Override
+	public void addToProgress(int res, Object... args) {
 		addToProgress(getString(res, args));
 	}
 
-	protected void setProgressStatus(int p) {
+	@Override
+	public void setProgressStatus(int p) {
 		progressDialog.setProgress(p);
 	}
 
+	@Override
 	public void handleResult(List<String> results) {
+
 		try {
 			String rawHtmlData = results.get(0);
 
@@ -314,6 +322,8 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
+		Intent intent;
+
 		if (menuItemMap.containsKey(item)) {
 			// C'est une entrée de menu de visualisation d'un compte
 
@@ -330,9 +340,23 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 		}
 
 		switch (item.getItemId()) {
+		case R.id.menuitem_afficherConsoDetaillee:
+
+			intent = new Intent(this, AfficherSuiviconsoDetailleActivity.class);
+
+			intent.putExtra(
+					AfficherSuiviconsoDetailleActivity.CLE_BUNDLE_LOGIN,
+					loginAbo);
+			intent.putExtra(AfficherSuiviconsoDetailleActivity.CLE_BUNDLE_PWD,
+					pwdAbo);
+
+			startActivity(intent);
+
+			return true;
+
 		case R.id.editAccounts:
 
-			Intent intent = new Intent(this, EditAccountsActivity.class);
+			intent = new Intent(this, EditAccountsActivity.class);
 
 			startActivity(intent);
 
@@ -346,8 +370,8 @@ public class SuiviConsoFreeMobileActivity extends ListActivity {
 			return true;
 
 		case R.id.options:
-			Intent intent2 = new Intent(this, OptionActivity.class);
-			startActivity(intent2);
+			intent = new Intent(this, OptionActivity.class);
+			startActivity(intent);
 
 		default:
 

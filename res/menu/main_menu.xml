@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
+        android:id="@+id/menuitem_afficherConsoDetaillee"
+        android:icon="@android:drawable/ic_menu_search"
+        android:orderInCategory="63000"
+        android:title="@string/button_afficher_suivi_conso_detaille"/>
+    <item
         android:id="@+id/editAccounts"
         android:icon="@android:drawable/ic_menu_edit"
         android:orderInCategory="64000"
