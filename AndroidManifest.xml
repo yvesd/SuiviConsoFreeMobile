@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.yvesd.scfm"
-    android:versionCode="18"
-    android:versionName="18" >
+    android:versionCode="19"
+    android:versionName="19" >
 
     <uses-sdk
         android:minSdkVersion="4"
@@ -12,9 +12,10 @@
 
     <application
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" >
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Black" >
         <activity
-            android:name=".SuiviConsoFreeMobileActivity"
+            android:name=".RipActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,19 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".EditAccountsActivity"
-            android:label="Liste des comptes Free Mobile" >
-        </activity>
-        <activity
-            android:name=".EditAccountActivity"
-            android:label="Edition compte Free Mobile" >
-        </activity>
-        <activity
-            android:name=".OptionActivity"
-            android:label="Options du programme" >
-        </activity>
-        <activity android:label="Consommation détaillée [Expérimental]" android:name=".AfficherSuiviconsoDetailleActivity"></activity>
     </application>
 
 </manifest>

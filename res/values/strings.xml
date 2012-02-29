@@ -1,40 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <string name="app_name">Suivi conso Free Mobile v18</string>
-    <string name="menuitem_editercomptes">Editer comptes Free Mobile</string>
-    <string name="menuitem_voircompte">Voir %1$s</string>
-    <string name="menuitem_rafraichir">Rafraîchir</string>
-    <string name="menuitem_changertheme">Changer de thème</string>
-    <string name="menuitem_options">Options</string>
-    <string name="button_saveorupdate">Enregistrer / mettre à jour</string>
-    <string name="button_delete">Supprimer le compte</string>
-    <string name="button_creercompte">Ajouter un compte</string>
-    <string name="button_retoursanssauvegarder">Retour sans sauvegarder</string>
-    <string name="button_retour">Retour</string>
-    <string name="bouton_retour">Retour</string>
-    <string name="button_changerCouleur">Choisir couleur</string>
-    <string name="button_retablirCouleur">Rétablir couleur</string>
-    <string name="button_telecharger_oi_colorpicker">Télécharger</string>
-    <string name="button_ne_pas_telecharger_oi_colorpicker">Annuler</string>
-    <string name="button_choixcouleur_retour">Retour</string>
-    <string name="button_afficher_suivi_conso_detaille">Afficher le suivi conso détaillé [Experimental]</string>
-    <string name="label_login">Identifiant (ou login), fourni par Free Mobile lors de votre commande :</string>
-    <string name="label_pwd">Mot de passe, fourni dans l\'e-mail :</string>
-    <string name="label_help_deleteupdate">Cliquez sur un compte Free Mobile dans la liste pour le modifier ou le supprimer</string>
-    <string name="label_pseudo">Nom d\'affichage (ou alias, ou pseudo), facultatif :</string>
-    <string name="label_telecharger_openintent_colorpicker">Il est nécessaire de télécharger OI Color Picker, de OpenIntents (gratuit) depuis Android Market pour pouvoir personnaliser les couleurs des icônes.</string>
-    <string name="log_aucuncompte">Aucun compte Free Mobile n\'est sélectionné. Pressez RETOUR, puis MENU. Si [Voir (nom du compte)] s\'affiche, cliquez dessus. Sinon cliquez sur [Editer comptes Free Mobile] pour créer un compte Free Mobile</string>
-    <string name="log_aucuncompte_consodet">Aucun compte Free Mobile n\'est sélectionné. Pressez RETOUR, puis MENU. Si [Voir (nom du compte)] s\'affiche, cliquez dessus. Sinon cliquez sur [Editer comptes Free Mobile] pour créer un compte Free Mobile</string>
-    <string name="log_suiviconsoillisible">Suivi conso illisible du site Free. Votre ligne est-elle active ? Contactez le développeur de l\'application</string>
-    <string name="log_erreur0100">Erreur 0100. Contactez le développeur de l\'application</string>
-    <string name="log_lecturedonnees">Lecture des données</string>
-    <string name="log_identificationimpossible">Impossible de s\'identifier : %1$s</string>
-    <string name="log_instructionconfig">Appuyez sur RETOUR, puis MENU, puis cliquez sur [Editer comptes Free Mobile] pour configurer les comptes Free Mobile</string>
-    <string name="log_erreur0200">Erreur 0200. Contactez le développeur de l\'application</string>
-    <string name="log_erreur0300">Erreur 0300. Vérifiez votre connexion à Internet. Vous devez pouvoir surfer avec un navigateur Web.</string>
-    <string name="log_erreur0400">Erreur 0400. Contactez le développeur de l\'application</string>
-    <string name="log_erreur0600">Erreur 0600. Contactez le développeur de l\'application</string>
-    <string name="infobulle_appuyezmenu">Appuyez sur la touche MENU pour commencer</string>
+    <string name="app_name">Suivi conso Free Mobile v19</string>
+    <string name="message">Chers utilisateurs,\n\nVisiblement, Free Mobile souhaite couler cette application, vu les récentes et multiples mises à jour de leur site. Le temps est venu pour moi d\'arrêter le développement de cette application, et de vous inviter à la désinstaller.\n\nJe souhaite vous remercier tous et toutes pour vos messages, vos votes, vos contributions, vos commentaires drôles et encourageants, vos retours d\'informations. C\'était une expérience très très intéressante pour moi.\n\nBonne continuation.\n\nYves Dessertine\n</string>
+    <string name="market">Android Market : Laisser un commentaire / désinstaller</string>
+    <string name="source">Accéder au code source, domaine public (au cas où cela susciterait des vocations :p)</string>
 
 </resources>

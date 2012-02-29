@@ -1,13 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <ListView
-        android:id="@android:id/list"
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-</LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/b" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/message" />
+
+        <Button
+            android:id="@+id/market"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/market" />
+
+        <Button
+            android:id="@+id/source"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/source" />
+    </LinearLayout>
+
+</ScrollView>
