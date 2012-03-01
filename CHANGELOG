@@ -1,3 +1,7 @@
+v20 :
+ - modification des messages affichés
+ - suppression permission internet (inutile depuis v19), et effacement des mots de passe stockés
+
 v19 :
  - version "RIP" avec intivation a désinstaller
 

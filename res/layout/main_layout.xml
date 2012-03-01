@@ -20,16 +20,27 @@
             android:text="@string/message" />
 
         <Button
+            android:id="@+id/espaceAbonne"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/espaceAbonne" />
+
+        <Button
+            android:id="@+id/officialApps"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/officialApps" />
+
+        <Button
             android:id="@+id/market"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/market" />
-
         <Button
-            android:id="@+id/source"
+            android:id="@+id/quitter"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/source" />
+            android:text="@string/quitter" />
     </LinearLayout>
 
 </ScrollView>

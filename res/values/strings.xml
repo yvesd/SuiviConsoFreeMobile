@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <string name="app_name">Suivi conso Free Mobile v19</string>
-    <string name="message">Chers utilisateurs,\n\nVisiblement, Free Mobile souhaite couler cette application, vu les récentes et multiples mises à jour de leur site. Le temps est venu pour moi d\'arrêter le développement de cette application, et de vous inviter à la désinstaller.\n\nJe souhaite vous remercier tous et toutes pour vos messages, vos votes, vos contributions, vos commentaires drôles et encourageants, vos retours d\'informations. C\'était une expérience très très intéressante pour moi.\n\nBonne continuation.\n\nYves Dessertine\n</string>
-    <string name="market">Android Market : Laisser un commentaire / désinstaller</string>
-    <string name="source">Accéder au code source, domaine public (au cas où cela susciterait des vocations :p)</string>
+    <string name="app_name">Suivi conso Free Mobile v20</string>
+    <string name="message">Application retirée du Market.\n\nFree Mobile confirme vouloir empêcher l\'utilisation d\'applications de suivi conso développées par des tiers. En effet, ces applications ne permettent pas à Free Mobile de garantir à 100% la sécurité de vos mots de passe. En conséquence, Free Mobile a pris diverses mesures visant à bloquer ce type d\'applications.\n\n<b><u>Je vous invite donc à la désinstaller</u></b>, et a utiliser le <b><u>site officiel de Free Mobile</u></b> pour suivre votre consommation, en attendant une application officielle pour smartphones. (Que l\'on attend tous :)).\n\nToutes les informations, explications se trouvent sur la page Android Market de cette application.\n\nIl ne me reste qu\'a vous remercier toutes et tous pour vos messages, votes, contributions, pour vos commentaires aussi drôles qu\'encourageants, pour vos retours d\'informations. C\'était une expérience intéressante pour moi.\n\nBon sudokus a tous avec la page de connexion de Free :p\n\nYves Dessertine\n\n</string>
+    <string name="officialApps">Liste des applications <b><u>officielles</u></b></string>
+    <string name="espaceAbonne">Espace abonné <b><u>officiel</u></b></string>
+    <string name="market">Page Android Market de cette application</string>
+    <string name="action_non_dispo">L\'action demandée n\'est pas disponible</string>
+    <string name="quitter">Quitter</string>
 
 </resources>
