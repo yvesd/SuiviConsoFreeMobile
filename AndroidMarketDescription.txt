@@ -1,3 +1,28 @@
+Application retirée du Market.
+
+Free Mobile confirme vouloir empêcher l'utilisation d'applications de suivi conso développées par des tiers. En effet, ces applications ne permettent pas à Free Mobile de garantir à 100% la sécurité de vos mots de passe. En conséquence, Free Mobile a pris diverses mesures visant à bloquer ce type d'applications.
+
+Je vous invite donc à la désinstaller, et a utiliser le site officiel de Free Mobile pour suivre votre consommation (https://mobile.free.fr/moncompte/), en attendant une application officielle pour smartphones. (Que l'on attend tous :)).
+
+J'ai abandonné cette application, car rien ne sert de persister, en sachant que Free bloquera les tentatives suivantes, et que les raisons de Free de bloquer les applis sont compréhensibles.
+
+Je laisse le code source des versions jusqu'à la v18 dans le domaine public, pour archives : https://github.com/yvesd/SuiviConsoFreeMobile
+
+Il ne me reste qu'a vous remercier toutes et tous pour vos messages, votes, contributions, pour vos commentaires aussi drôles qu'encourageants, pour vos retours d'informations. C'était une expérience intéressante pour moi.
+
+Plus d'infos ici : http://www.clubic.com/telephone-portable/operateur-telephonie-mobile/free-mobile/actualite-477486-free-mobile-clavier-virtuel-handicape-applications-suivi-conso.html
+
+Et ici : http://www.edencast.fr/free-mobile-quand-il-suffit-dun-clavier-virtuel-pour-tout-casser/
+
+Bon sudokus a tous avec la page de connexion de Free :p
+
+Dernière mise à jour de cette page le 25 février à 20:30
+
+
+===========================================
+Ancienne description
+===========================================
+
 LE 22/02/2012 à 18h30, FREE A CHANGE SON SITE
 Seule la version 18 fonctionne (testé le 23/02/2012 à 0:36 -- rien ne garantit que ça va durer)
 
@@ -28,15 +53,3 @@ Vos identifiants transitent sur le réseau de façon chiffrée vers les serveurs
 Je tiens à remercier :
  - Stéphane (de solnondesign.com) pour l'icône
  - Julien Delille pour les informations m'ayant permis d'ajouter le suivi conso à l'étranger
-
-A venir (du premier qui sera traité, jusqu'au dernier) :
- * Amélioration de l'interface graphique : Sections (national et international) pliables
- * Meilleur support Android 3 et + (Honeycomb, ICS)
- * Widget
- * Interface graphique : ajout de graphiques, icônes et couleurs pour les forfaits 2€ genre Vous avez consommé 30minutes sur 60 avec une barre indiquant le pourcentage du forfait déjà consommé. 
- * Affichage des factures détaillées ?
- * Possibilité de trier et filtrer dans la conso détaillée. Affichage plus joli.
- * Traduction anglaise ?
-
-
-Dernière mise à jour de cette page le 23 février à 00:53
